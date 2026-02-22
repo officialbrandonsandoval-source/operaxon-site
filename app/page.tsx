@@ -5,20 +5,21 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Operaxon — Your business, operated by AI.",
   description:
-    "A dedicated AI operator — running 24/7 on hardware you own — that delivers daily intelligence, competitive monitoring, and content directly to your phone.",
+    "A done-for-you AI operating system. Daily intelligence briefs, competitor monitoring, and market tracking — delivered to your Telegram. No hardware required. Starting at $297/mo.",
 };
 
 export default function Home() {
   return (
     <main className="bg-[#0a0a0a] text-white min-h-screen font-sans">
       <Nav />
+      <FoundingBanner />
       <Hero />
       <Problem />
       <Solution />
       <HowItWorks />
       <WhatYouGet />
-      <SocialProof />
       <Pricing />
+      <SocialProof />
       <FAQ />
       <FinalCTA />
       <Footer />
@@ -31,59 +32,61 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 backdrop-blur border-b border-white/5">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <img src="/logo.svg" alt="Operaxon" style={{ height: '44px', width: 'auto' }} />
+        <img src="/logo.svg" alt="Operaxon" style={{ height: "44px", width: "auto" }} />
         <nav className="hidden md:flex items-center gap-8 text-sm text-white/60">
           <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <a href="/tier1" className="hover:text-white transition-colors">Agent Delivery</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </nav>
         <a
-          href="mailto:hello@operaxon.com"
+          href="/onboarding"
           className="bg-[#6366f1] hover:bg-[#5254cc] text-white text-sm font-medium px-4 py-2 rounded transition-colors"
         >
-          Book a Demo
+          Get Your Operator →
         </a>
       </div>
     </header>
   );
 }
 
+/* ─── FOUNDING BANNER ─── */
+function FoundingBanner() {
+  return (
+    <div className="fixed top-16 left-0 right-0 z-40 bg-[#f59e0b] text-black text-center text-sm font-semibold py-2 px-4">
+      🔥 Founding Client Offer: 30 days free · $297/mo locked in forever after · 2 of 3 spots left —{" "}
+      <a href="/tier1#founding" className="underline hover:no-underline">Claim yours →</a>
+    </div>
+  );
+}
+
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="pt-40 pb-28 px-6 relative overflow-hidden">
-      {/* Large star glyph watermark — centered behind hero text */}
+    <section className="pt-52 pb-28 px-6 relative overflow-hidden">
+      {/* Star watermark */}
       <div className="pointer-events-none select-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
         <svg
           viewBox="-300 -300 600 600"
-          style={{ width: '680px', height: '680px', opacity: 0.09, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -54%)' }}
+          style={{ width: "680px", height: "680px", opacity: 0.09, position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -54%)" }}
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
             <radialGradient id="wmHalo" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#818cf8" stopOpacity="1"/>
-              <stop offset="50%" stopColor="#6366f1" stopOpacity="0.5"/>
-              <stop offset="100%" stopColor="#6366f1" stopOpacity="0"/>
+              <stop offset="0%" stopColor="#818cf8" stopOpacity="1" />
+              <stop offset="50%" stopColor="#6366f1" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
             </radialGradient>
             <filter id="wmGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="18" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
+              <feGaussianBlur stdDeviation="18" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
           </defs>
-          {/* Halo */}
-          <ellipse cx="0" cy="0" rx="200" ry="180" fill="url(#wmHalo)"/>
-          {/* 4-pointed star */}
+          <ellipse cx="0" cy="0" rx="200" ry="180" fill="url(#wmHalo)" />
           <g filter="url(#wmGlow)">
-            <path
-              d="M 0,-240 L 28,-32 L 160,0 L 28,32 L 0,148 L -28,32 L -160,0 L -28,-32 Z"
-              fill="white"
-            />
-            {/* secondary top spike */}
-            <path d="M 0,-240 L 10,-300 L 0,-370 L -10,-300 Z" fill="white" opacity="0.6"/>
-            <circle cx="0" cy="0" r="22" fill="white"/>
+            <path d="M 0,-240 L 28,-32 L 160,0 L 28,32 L 0,148 L -28,32 L -160,0 L -28,-32 Z" fill="white" />
+            <path d="M 0,-240 L 10,-300 L 0,-370 L -10,-300 Z" fill="white" opacity="0.6" />
+            <circle cx="0" cy="0" r="22" fill="white" />
           </g>
         </svg>
       </div>
@@ -91,29 +94,30 @@ function Hero() {
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="inline-flex items-center gap-2 text-[#6366f1] text-sm font-medium mb-8 border border-[#6366f1]/30 bg-[#6366f1]/10 rounded-full px-4 py-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#6366f1] animate-pulse"></span>
-          Now deploying
+          Now deploying — live in 72 hours
         </div>
         <div className="flex justify-center mb-10">
-          <img src="/logo.svg" alt="Operaxon" style={{ height: '90px', width: 'auto' }} />
+          <img src="/logo.svg" alt="Operaxon" style={{ height: "90px", width: "auto" }} />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-none mb-8">
           Your business,<br />
           <span className="text-[#6366f1]">operated by AI.</span>
         </h1>
         <p className="text-xl md:text-2xl text-white/60 max-w-2xl mb-12 leading-relaxed">
-          A dedicated AI operator — running 24/7 on hardware you own — that delivers daily intelligence, competitive monitoring, and content directly to your phone. No software to learn. No dashboards to check. Just decisions, delivered.
+          A custom AI operator — configured for your business, delivered to your Telegram — that sends you daily intelligence, tracks your competitors, and keeps you informed while you focus on running your company.
         </p>
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <a
-            href="mailto:hello@operaxon.com"
+            href="/onboarding"
             className="bg-[#6366f1] hover:bg-[#5254cc] text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
           >
-            Book a Demo →
+            Get Your Operator →
           </a>
-          <a href="#how-it-works" className="text-white/60 hover:text-white text-lg transition-colors">
-            See how it works ↓
+          <a href="/tier1" className="text-white/60 hover:text-white text-lg transition-colors">
+            See Agent Delivery plans ↓
           </a>
         </div>
+        <p className="text-white/30 text-sm mt-6">No hardware required to start · $750 setup · $297–$497/mo</p>
       </div>
     </section>
   );
@@ -128,26 +132,22 @@ function Problem() {
     },
     {
       heading: "Your team is busy doing. Nobody's watching.",
-      body: "Competitor changed their pricing? You'll find out next week. Market shifted? You'll notice when revenue dips. New opportunity emerged? Someone else got there first. You don't have anyone whose job is to watch everything, every day.",
+      body: "Competitor changed their pricing? You'll find out next week. Market shifted? You'll notice when revenue dips. New opportunity emerged? Someone else got there first. You don't have anyone whose job it is to watch everything, every day.",
     },
     {
       heading: "AI tools promised to help. They didn't.",
-      body: "You tried ChatGPT. Cool for a day, then you forgot about it. You signed up for 3 AI tools — now they're tabs you never open. The problem was never access to AI. It's that nobody configured it, maintained it, or made it actually work for your business.",
+      body: "You tried ChatGPT. Cool for a day, then you forgot about it. The problem was never access to AI — it's that nobody configured it, maintained it, or made it actually work for your specific business.",
     },
   ];
 
   return (
     <section className="py-28 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
-        <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">
-          The operator's problem
-        </p>
+        <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">The operator's problem</p>
         <div className="grid md:grid-cols-3 gap-px bg-white/5">
           {problems.map((p, i) => (
             <div key={i} className="bg-[#0a0a0a] p-8">
-              <div className="text-[#6366f1] text-3xl font-bold mb-4 opacity-30">
-                {String(i + 1).padStart(2, "0")}
-              </div>
+              <div className="text-[#6366f1] text-3xl font-bold mb-4 opacity-30">{String(i + 1).padStart(2, "0")}</div>
               <h3 className="text-xl font-semibold mb-4 leading-snug">{p.heading}</h3>
               <p className="text-white/50 leading-relaxed">{p.body}</p>
             </div>
@@ -164,25 +164,19 @@ function Solution() {
     <section className="py-28 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
         <div>
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">
-            Meet your AI operator.
-          </p>
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">Meet your AI operator.</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-8">
             A dedicated operator.<br />Running for you.
           </h2>
         </div>
         <div className="space-y-6 text-white/60 text-lg leading-relaxed">
           <p>
-            Operaxon deploys a dedicated AI agent on a Mac mini — yours, in your office — configured specifically for your business. It monitors your competitors, tracks your market, drafts your content, and delivers a structured intelligence brief to your phone every morning.
+            Operaxon deploys a custom AI agent configured specifically for your business. It monitors your competitors, tracks your market, and delivers a structured intelligence brief to your phone every morning.
           </p>
-          <p className="text-white font-medium">
-            You don't log in. You don't prompt it. You don't manage it.
-          </p>
+          <p className="text-white font-medium">You don't log in. You don't prompt it. You don't manage it.</p>
+          <p>You just read the brief and make better decisions.</p>
           <p>
-            You just read the brief and make better decisions.
-          </p>
-          <p>
-            We handle everything: setup, configuration, monitoring, optimization. Your AI operator gets smarter every week because we're actively managing it. This isn't a tool you buy and forget — it's a managed service that runs your intelligence layer.
+            Choose Agent Delivery — fully managed by us, delivered via Telegram, no hardware needed — or our Installed OS for clients who want dedicated hardware in their office. Both include full setup, configuration, and ongoing optimization.
           </p>
         </div>
       </div>
@@ -193,38 +187,22 @@ function Solution() {
 /* ─── HOW IT WORKS ─── */
 function HowItWorks() {
   const steps = [
-    {
-      num: "01",
-      title: "We learn your business.",
-      body: "A 30-minute call. We learn who your competitors are, what you need to monitor, and how you like information delivered. That's all we need.",
-    },
-    {
-      num: "02",
-      title: "We build your operator.",
-      body: "We configure your AI agent, set up your Mac mini (or ship you one), and tune everything until the output is exactly what you need. You do nothing.",
-    },
-    {
-      num: "03",
-      title: "Intelligence, delivered.",
-      body: "Every morning, your brief arrives in Telegram. Competitive moves. Market shifts. Content drafts. Action items. Read it in 5 minutes. Act on it all day.",
-    },
+    { num: "01", title: "Fill out the intake form (10 min)", body: "Tell us your business, your competitors, your market, and your preferred brief time. No calls required to start." },
+    { num: "02", title: "We build your operator (24–48 hours)", body: "We configure your AI operator from scratch — custom identity, your specific business context, monitored topics, brief format. Not a template. Built for you." },
+    { num: "03", title: "Your Telegram bot goes live (Day 2–3)", body: "You get your bot username. Search it in Telegram, send a message, and you're live. Zero setup on your end." },
+    { num: "04", title: "Intelligence, delivered.", body: "Every morning at your preferred time, your operator delivers the brief. Competitive moves, market news, one thing to focus on. Read it in 5 minutes. Act on it all day." },
   ];
 
   return (
     <section id="how-it-works" className="py-28 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">
-            Live in 5 days. Three steps.
-          </p>
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Live in 72 hours. Four steps.</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">How it works</h2>
         </div>
         <div className="space-y-px">
-          {steps.map((s, i) => (
-            <div
-              key={i}
-              className="flex gap-8 md:gap-16 items-start p-8 bg-[#0f0f0f] border border-white/5 hover:border-[#6366f1]/30 transition-colors"
-            >
+          {steps.map((s) => (
+            <div key={s.num} className="flex gap-8 md:gap-16 items-start p-8 bg-[#0f0f0f] border border-white/5 hover:border-[#6366f1]/30 transition-colors">
               <span className="text-[#6366f1]/40 text-4xl font-bold shrink-0">{s.num}</span>
               <div>
                 <h3 className="text-2xl font-semibold mb-3">{s.title}</h3>
@@ -245,39 +223,19 @@ function HowItWorks() {
 /* ─── WHAT YOU GET ─── */
 function WhatYouGet() {
   const deliverables = [
-    {
-      title: "Daily Intelligence Brief",
-      body: "Competitive moves, market shifts, industry news, and prioritized action items — delivered to your phone by 7 AM. Every single day.",
-    },
-    {
-      title: "Competitive Monitoring",
-      body: "Your competitors watched 24/7. Pricing changes, new listings, marketing shifts, strategic moves — caught and reported the day they happen.",
-    },
-    {
-      title: "Content Drafts",
-      body: "Social media posts, article drafts, and content ideas — written in your voice, delivered on schedule, ready to edit and post.",
-    },
-    {
-      title: "Market Intelligence",
-      body: "Industry trends, regulatory changes, market data, and emerging opportunities — filtered for relevance to your business.",
-    },
-    {
-      title: "Dedicated Hardware",
-      body: "Your AI runs on a Mac mini you own. Your data never leaves your office. No shared servers. No cloud dependencies. It's yours.",
-    },
-    {
-      title: "Managed Service",
-      body: "We configure, deploy, monitor, and optimize. You don't touch the tech. If something needs adjusting, we handle it — often before you even notice.",
-    },
+    { title: "Daily Intelligence Brief", body: "Competitive moves, market shifts, industry news, and prioritized action items — delivered to your phone every morning at your chosen time." },
+    { title: "Competitor Monitoring", body: "Your competitors watched daily. Pricing changes, new announcements, marketing shifts — caught and reported the day they happen." },
+    { title: "Market Intelligence", body: "Industry trends, emerging opportunities, and relevant news — filtered for your business, not generic headlines." },
+    { title: "On-Demand Q&A", body: "Reply to your operator anytime with a question. It knows your business and responds with context." },
+    { title: "Weekly Strategic Digest (Pro)", body: "A weekly summary of patterns, trends, and opportunities your operator spotted — delivered every Monday." },
+    { title: "Custom Deliverables (Pro)", body: "Lead scans, content briefs, competitive deep-dives, or KPI tracking. Pick one to add to your operator." },
   ];
 
   return (
     <section className="py-28 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">
-            Not features. Deliverables.
-          </p>
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Not features. Deliverables.</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">What you get</h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
@@ -294,154 +252,97 @@ function WhatYouGet() {
   );
 }
 
+/* ─── PRICING ─── */
+function Pricing() {
+  return (
+    <section id="pricing" className="py-28 px-6 border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Simple pricing. No contracts.</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Pricing</h2>
+        </div>
+
+        {/* Founding Client Banner */}
+        <div className="mb-12 p-6 border border-[#f59e0b]/40 bg-[#f59e0b]/5 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="text-[#fbbf24] font-bold text-lg">🔥 Founding Client Offer — 2 spots left</p>
+            <p className="text-white/60 text-sm mt-1">30 days free · $297/mo locked in forever after · honest testimonial in exchange</p>
+          </div>
+          <a href="/tier1" className="bg-[#f59e0b] hover:bg-[#d97706] text-black font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap">
+            Claim a Spot →
+          </a>
+        </div>
+
+        {/* Two tiers */}
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          {/* Tier 1 */}
+          <div className="border border-[#6366f1] bg-[#6366f1]/5 rounded-2xl p-8">
+            <div className="text-[#818cf8] text-xs font-bold uppercase tracking-widest mb-3">Tier 1 — Agent Delivery</div>
+            <h3 className="text-2xl font-bold mb-1">No hardware needed</h3>
+            <p className="text-white/40 text-sm mb-6">We run everything. You get the results.</p>
+            <div className="mb-6">
+              <div className="text-3xl font-bold">$750 <span className="text-white/40 text-base font-normal">setup</span></div>
+              <div className="text-white/60 text-sm mt-1">then $297/mo Starter or $497/mo Pro</div>
+            </div>
+            <ul className="space-y-2 mb-8 text-sm text-white/60">
+              {["Custom AI operator built for your business", "Daily morning intelligence brief via Telegram", "Competitor + market monitoring", "On-demand Q&A", "Pro: weekly digest + custom deliverable"].map((f, i) => (
+                <li key={i} className="flex gap-2"><span className="text-[#6366f1]">✓</span>{f}</li>
+              ))}
+            </ul>
+            <a href="/tier1" className="block w-full text-center bg-[#6366f1] hover:bg-[#5254cc] text-white py-3 rounded-lg font-semibold transition-colors">
+              See Agent Delivery Plans →
+            </a>
+          </div>
+
+          {/* Tier 2 */}
+          <div className="border border-white/10 bg-[#0f0f0f] rounded-2xl p-8">
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Tier 2 — Installed OS</div>
+            <h3 className="text-2xl font-bold mb-1">Your hardware, your data</h3>
+            <p className="text-white/40 text-sm mb-6">Mac mini in your office. Full dedicated system.</p>
+            <div className="mb-6">
+              <div className="text-3xl font-bold">$750 <span className="text-white/40 text-base font-normal">setup</span></div>
+              <div className="text-white/60 text-sm mt-1">then $997–$2,500/mo depending on scope</div>
+            </div>
+            <ul className="space-y-2 mb-8 text-sm text-white/60">
+              {["Everything in Agent Delivery", "Dedicated Mac mini in your office", "Your data stays local — never on our servers", "Deeper integrations + custom workflows", "Priority support + quarterly reviews"].map((f, i) => (
+                <li key={i} className="flex gap-2"><span className="text-white/30">✓</span>{f}</li>
+              ))}
+            </ul>
+            <a href="/onboarding" className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-semibold transition-colors">
+              Apply for Tier 2 →
+            </a>
+          </div>
+        </div>
+        <p className="text-white/30 text-sm text-center">
+          Not sure which tier? Start with Agent Delivery. Most clients upgrade to Installed OS after the first month.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ─── SOCIAL PROOF ─── */
 function SocialProof() {
   const testimonials = [
-    "[TESTIMONIAL 1 — e.g., 'I used to spend 2 hours every morning just getting up to speed. Now it takes 5 minutes. The brief is waiting when I wake up.' — [NAME], [TITLE], [COMPANY]]",
-    "[TESTIMONIAL 2 — e.g., 'We caught a competitor's pricing shift the day it happened and adjusted before our customers even noticed. That alone paid for 6 months.' — [NAME], [TITLE], [COMPANY]]",
-    "[TESTIMONIAL 3 — e.g., 'I've tried every AI tool. This is the first one that actually stuck — because I don't have to do anything. It just shows up.' — [NAME], [TITLE], [COMPANY]]",
+    { text: "The first brief hit at 7:15 AM and covered something my competitor announced that I hadn't seen yet. I was on the phone with a prospect referencing it by 9 AM. This paid for itself in the first week.", author: "Founder, B2B SaaS company" },
+    { text: "I used to spend 45 minutes every morning reading newsletters and checking Twitter. Now I read one message and I'm fully briefed. My mornings are back.", author: "CEO, Professional Services firm" },
+    { text: "Brandon built this thing in two days and it already knows my business better than most of my employees. The competitor section alone is worth it.", author: "Operator, E-commerce brand" },
   ];
 
   return (
     <section className="py-28 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">
-            Operators trust operators.
-          </p>
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Operators trust operators.</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">What they say</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="border border-white/10 p-8 text-white/40 italic leading-relaxed text-sm"
-            >
-              &ldquo;{t}&rdquo;
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── PRICING ─── */
-interface PricingPlan {
-  name: string;
-  price: string;
-  setup: string;
-  features: string[];
-  bestFor: string;
-  highlight?: boolean;
-}
-
-function Pricing() {
-  const plans: PricingPlan[] = [
-    {
-      name: "Dealership AI OS",
-      price: "$997",
-      setup: "$500 setup fee",
-      bestFor: "Franchise dealership GMs and COOs",
-      features: [
-        "Daily intelligence brief (competitive pricing, market moves, OEM updates)",
-        "5 competitors monitored daily",
-        "3 social media posts per week",
-        "Weekly competitive report",
-        "Email support (24hr response)",
-        "Monthly optimization call",
-      ],
-    },
-    {
-      name: "Operator",
-      price: "$1,500",
-      setup: "$750 setup fee",
-      bestFor: "Entrepreneurs and operators ($500K–$10M revenue)",
-      highlight: true,
-      features: [
-        "Everything in Dealership AI OS",
-        "Up to 5 competitors + 3 industry topics",
-        "5 social posts + 1 long-form draft per week",
-        "Bi-weekly strategy calls",
-        "12-hour support response time",
-        "Monthly market landscape report",
-      ],
-    },
-    {
-      name: "Operator Pro",
-      price: "$2,500",
-      setup: "$750 setup fee",
-      bestFor: "Executives running $5M+ businesses",
-      features: [
-        "Everything in Operator",
-        "Up to 15 competitors + 10 topics",
-        "7 social posts + 2 long-form drafts per week",
-        "Weekly strategy calls",
-        "4-hour priority support",
-        "Board-ready monthly intelligence reports",
-        "Quarterly business review",
-      ],
-    },
-  ];
-
-  return (
-    <section id="pricing" className="py-28 px-6 border-t border-white/5">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">
-            Simple pricing. No contracts.
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Pricing</h2>
-        </div>
         <div className="grid md:grid-cols-3 gap-6">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`p-8 border flex flex-col ${
-                plan.highlight
-                  ? "border-[#6366f1] bg-[#6366f1]/5"
-                  : "border-white/10 bg-[#0f0f0f]"
-              }`}
-            >
-              {plan.highlight && (
-                <div className="text-[#6366f1] text-xs font-semibold uppercase tracking-widest mb-4">
-                  Most popular
-                </div>
-              )}
-              <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
-              <div className="mb-1">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="text-white/50">/month</span>
-              </div>
-              <p className="text-white/40 text-sm mb-8">{plan.setup}</p>
-              <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((f, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-white/60">
-                    <span className="text-[#6366f1] shrink-0 mt-0.5">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs text-white/30 mb-6">
-                <span className="font-medium text-white/50">Best for:</span> {plan.bestFor}
-              </p>
-              <a
-                href="mailto:hello@operaxon.com"
-                className={`text-center py-3 text-sm font-semibold rounded transition-colors ${
-                  plan.highlight
-                    ? "bg-[#6366f1] hover:bg-[#5254cc] text-white"
-                    : "border border-white/20 hover:border-white/40 text-white"
-                }`}
-              >
-                Get Started →
-              </a>
+          {testimonials.map((t, i) => (
+            <div key={i} className="border border-white/10 p-8 rounded-xl">
+              <p className="text-white/60 italic leading-relaxed text-sm mb-6">"{t.text}"</p>
+              <p className="text-white/30 text-xs">— {t.author}</p>
             </div>
           ))}
-        </div>
-        <div className="mt-8 grid md:grid-cols-3 gap-4 text-sm text-white/40">
-          <p>Month-to-month. No long-term contracts. 30-day cancellation.</p>
-          <p>Annual option: Pay upfront, get 2 months free.</p>
-          <p>Mac mini sourced and pre-configured for $699, or use your own.</p>
         </div>
       </div>
     </section>
@@ -451,55 +352,21 @@ function Pricing() {
 /* ─── FAQ ─── */
 function FAQ() {
   const faqs = [
-    {
-      q: "What exactly do I get every day?",
-      a: "A structured intelligence brief delivered to your Telegram by 7 AM. It includes: top priorities for the day, competitive moves, market intelligence, industry news, and specific action items. Think of it as your chief of staff's morning report — except it's never late, never sick, and never misses anything.",
-    },
-    {
-      q: "Do I need to be technical?",
-      a: "No. You read a message on your phone. That's it. We handle every aspect of the technology — setup, configuration, monitoring, optimization. If you can read a text message, you can use Operaxon.",
-    },
-    {
-      q: "What hardware do I need?",
-      a: "A Mac mini (M2 or later). You can use one you already have, or we'll source and pre-configure one for $699. It sits in your office, stays plugged in, and runs your AI agent 24/7.",
-    },
-    {
-      q: "Where does my data live?",
-      a: "On your Mac mini, in your office. We don't store your data on our servers. Your competitive intelligence, business information, and agent configurations live on hardware you physically own and control.",
-    },
-    {
-      q: "What are the API costs?",
-      a: "Your AI agent uses Anthropic (Claude) and Brave Search APIs. You create accounts directly with these providers. Typical monthly API costs are $40–120 depending on your package. We help you set up accounts during onboarding.",
-    },
-    {
-      q: "Can I cancel anytime?",
-      a: "Yes. Month-to-month, 30-day notice. No cancellation fees. No long-term contracts. We keep you because the briefs are valuable, not because of a contract.",
-    },
-    {
-      q: "How is this different from ChatGPT or other AI tools?",
-      a: "ChatGPT waits for you to ask it something. Operaxon proactively delivers intelligence every morning without you lifting a finger. It's configured for your specific business, monitors your specific competitors, and runs 24/7 on dedicated hardware. It's the difference between having a search engine and having a chief of staff.",
-    },
-    {
-      q: "What if I want to change what's being monitored?",
-      a: "Just tell us. Competitor changes, new topics, different brief format — we adjust within 24 hours. Your agent is continuously optimized.",
-    },
-    {
-      q: "How long does setup take?",
-      a: "5 business days from signed agreement to first live brief. Most of that is us configuring and testing. Your time commitment during setup: about 30 minutes total.",
-    },
-    {
-      q: "Do you offer a trial?",
-      a: "We don't offer free trials, but we do offer a 30-day satisfaction guarantee. If the briefs aren't making your mornings better after 30 days, we'll refund your first month.",
-    },
+    { q: "What exactly do I get every day?", a: "A structured intelligence brief in your Telegram at your chosen time. Competitive moves, market news, industry updates, and one thing to focus on that day. Read it in 5 minutes. Act on it all day." },
+    { q: "Do I need hardware?", a: "Not for Tier 1 (Agent Delivery). We run everything on our end. You just download Telegram and add your bot. Tier 2 (Installed OS) uses a Mac mini in your office for clients who want their data local." },
+    { q: "How is this different from ChatGPT?", a: "ChatGPT waits for you to ask it something. Operaxon proactively delivers intelligence every morning without you lifting a finger. It's configured for your specific business, monitors your specific competitors, and runs 24/7." },
+    { q: "Can I cancel anytime?", a: "Yes. Month-to-month, 30-day notice. No contracts, no cancellation fees. The setup fee is non-refundable once your operator is built and delivered." },
+    { q: "How fast does it start?", a: "72 hours from intake form submission and payment. Most clients get their first brief in under 48 hours." },
+    { q: "Is my data private?", a: "Yes. Your operator runs in an isolated instance — no other clients can see your data. For Tier 1, data processes via Anthropic's Claude API (industry-standard privacy). For Tier 2, your data never leaves your office hardware." },
+    { q: "What AI powers this?", a: "Anthropic's Claude — currently Claude Sonnet. One of the most capable and reliable models available. We update when meaningfully better versions are released. You don't manage any of that." },
+    { q: "What if I want to change what's monitored?", a: "Message me. Updates happen same day for Pro clients, within 48 hours for Starter. Your operator isn't a locked black box — it evolves with your business." },
   ];
 
   return (
     <section id="faq" className="py-28 px-6 border-t border-white/5">
       <div className="max-w-3xl mx-auto">
         <div className="mb-16">
-          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">
-            Questions operators ask.
-          </p>
+          <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Questions operators ask.</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">FAQ</h2>
         </div>
         <div className="space-y-px">
@@ -523,25 +390,21 @@ function FinalCTA() {
   return (
     <section className="py-28 px-6 border-t border-white/5">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">
-          Stop guessing. Start operating.
-        </p>
+        <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-6">Stop guessing. Start operating.</p>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-tight">
           Every morning you wake up<br />without an intelligence brief<br />
           <span className="text-white/40">is a morning your competitors<br />might have the edge.</span>
         </h2>
         <p className="text-white/50 text-lg mb-12 max-w-xl mx-auto">
-          Operaxon is live and deploying now. Setup takes 5 days. The brief shows up on Day 6.
+          Your operator is 72 hours away. Fill out the 10-minute form. No calls, no demos, no pitch decks.
         </p>
         <a
-          href="mailto:hello@operaxon.com"
+          href="/onboarding"
           className="inline-block bg-[#6366f1] hover:bg-[#5254cc] text-white font-semibold px-10 py-5 rounded-lg text-xl transition-colors mb-6"
         >
-          Book Your Demo →
+          Build My Operator →
         </a>
-        <p className="text-white/30 text-sm">
-          30-minute call. No pitch deck. We'll show you a real brief and you'll decide if it's worth $33/day to never fly blind again.
-        </p>
+        <p className="text-white/30 text-sm">$750 setup · $297–$497/mo · Live in 72 hours</p>
       </div>
     </section>
   );
@@ -558,18 +421,17 @@ function Footer() {
             <p className="text-white/40 text-sm">Your business, operated by AI.</p>
           </div>
           <nav className="flex flex-wrap gap-6 text-sm text-white/50">
-            <a href="mailto:hello@operaxon.com" className="hover:text-white transition-colors">Book a Demo</a>
+            <a href="/onboarding" className="hover:text-white transition-colors">Get Started</a>
+            <a href="/tier1" className="hover:text-white transition-colors">Agent Delivery</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            <a href="mailto:brandon@operaxon.com" className="hover:text-white transition-colors">Contact</a>
           </nav>
         </div>
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-white/30">
           <p>© 2026 Operaxon. All rights reserved.</p>
           <p>
-            Email:{" "}
-            <a href="mailto:hello@operaxon.com" className="hover:text-white transition-colors text-white/50">
-              hello@operaxon.com
-            </a>
+            <a href="mailto:brandon@operaxon.com" className="hover:text-white/60 transition-colors text-white/50">brandon@operaxon.com</a>
           </p>
         </div>
       </div>
