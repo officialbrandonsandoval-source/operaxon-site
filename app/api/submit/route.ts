@@ -12,7 +12,7 @@ async function sendTelegram(message: string): Promise<{ ok: boolean; error?: str
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text: message,
-        parse_mode: "Markdown",
+        parse_mode: "HTML",
       }),
     });
     const body = await res.json();
@@ -45,28 +45,31 @@ export async function POST(req: NextRequest) {
     const hardware = data.hardware || "—";
     const notes = data.notes || "—";
 
-    const message = `🔥 *NEW OPERAXON LEAD*
+    // Escape HTML special chars in user-provided fields
+    const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-👤 *${name}* — ${role} @ ${company}
-📧 ${email}
-📱 ${phone}
-💬 Telegram: ${telegram}
+    const message = `🔥 <b>NEW OPERAXON LEAD</b>
 
-🏢 *Business:* ${business}
-💰 *Revenue:* ${revenue}
-🥊 *Competitors:* ${competitors}
-📋 *Topics to monitor:* ${topics}
-⏰ *Brief time:* ${briefTime} (${timezone})
-✅ *Success looks like:* ${success}
-💻 *Hardware:* ${hardware}
-📝 *Notes:* ${notes}
+👤 <b>${esc(name)}</b> — ${esc(role)} @ ${esc(company)}
+📧 ${esc(email)}
+📱 ${esc(phone)}
+💬 Telegram: ${esc(telegram)}
+
+🏢 <b>Business:</b> ${esc(business)}
+💰 <b>Revenue:</b> ${esc(revenue)}
+🥊 <b>Competitors:</b> ${esc(competitors)}
+📋 <b>Topics:</b> ${esc(topics)}
+⏰ <b>Brief time:</b> ${esc(briefTime)} (${esc(timezone)})
+✅ <b>Success looks like:</b> ${esc(success)}
+💻 <b>Hardware:</b> ${esc(hardware)}
+📝 <b>Notes:</b> ${esc(notes)}
 
 → Reply within 1 hour for best conversion`;
 
     const result = await sendTelegram(message);
     if (!result.ok) {
       console.error("Telegram delivery failed:", result.error);
-      return NextResponse.json({ error: "Telegram delivery failed", detail: result.error, tokenSet: !!TELEGRAM_BOT_TOKEN, chatIdSet: !!TELEGRAM_CHAT_ID }, { status: 500 });
+      return NextResponse.json({ error: "Telegram delivery failed" }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
