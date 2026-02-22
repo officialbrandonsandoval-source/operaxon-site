@@ -55,7 +55,11 @@ export async function POST(req: NextRequest) {
 
 → Reply within 1 hour for best conversion`;
 
-    await sendTelegram(message);
+    const sent = await sendTelegram(message);
+    if (!sent) {
+      console.error("Telegram delivery failed — check BOT_TOKEN and CHAT_ID env vars");
+      return NextResponse.json({ error: "Telegram delivery failed" }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
