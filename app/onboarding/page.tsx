@@ -10,12 +10,31 @@ export default function OnboardingPage() {
     e.preventDefault();
     setSubmitting(true);
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const fd = new FormData(form);
 
-    const res = await fetch('https://formspree.io/f/xnjbgwjy', {
+    // Convert FormData to JSON matching API field names
+    const data = {
+      name: `${fd.get('first_name')} ${fd.get('last_name')}`.trim(),
+      company: fd.get('company'),
+      role: fd.get('role'),
+      email: fd.get('email'),
+      phone: fd.get('phone'),
+      telegram: fd.get('telegram'),
+      business: fd.get('business_description'),
+      revenue: fd.get('revenue'),
+      competitors: fd.get('competitors'),
+      topics: fd.get('topics'),
+      briefTime: fd.get('brief_time'),
+      timezone: fd.get('timezone'),
+      success: fd.get('success'),
+      hardware: fd.get('hardware'),
+      notes: fd.get('notes'),
+    };
+
+    const res = await fetch('/api/submit', {
       method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (res.ok) {
@@ -33,8 +52,8 @@ export default function OnboardingPage() {
           <div style={{ fontSize: '48px', marginBottom: '24px' }}>⚔️</div>
           <h1 style={{ color: '#fff', fontSize: '28px', fontWeight: 700, marginBottom: '16px' }}>You&apos;re in the system.</h1>
           <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: 1.6, marginBottom: '32px' }}>
-            Brandon will review your answers and have your AI operating system configured within 5–7 days.
-            Your first brief fires the morning after setup is complete.
+            Brandon will review your answers and reach out within a few hours.
+            Your operator goes live within 72 hours. First brief fires the next morning.
           </p>
           <p style={{ color: '#6366f1', fontSize: '14px', fontWeight: 500 }}>Done for you. First time. Right way.</p>
         </div>
