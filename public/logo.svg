@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="600" height="180">
+  <defs>
+    <!-- Glow filter for X character -->
+    <filter id="xGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over" result="glow"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow/bloom filter for the star mark -->
+    <filter id="starGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Radial gradient: indigo halo behind star -->
+    <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#818cf8" stop-opacity="0.65"/>
+      <stop offset="35%"  stop-color="#6366f1" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Crisp star: white with soft inner glow -->
+    <filter id="starBloom" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="softBlur"/>
+      <feMerge>
+        <feMergeNode in="softBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="600" height="180" fill="#000000"/>
+
+  <!-- Indigo radial halo behind star (large, soft) -->
+  <ellipse cx="384" cy="60" rx="55" ry="46" fill="url(#haloGrad)"/>
+
+  <!-- 4-pointed star mark: sharp cross/diamond shape, white with bloom -->
+  <g transform="translate(384, 60)" filter="url(#starBloom)">
+    <!-- The cross star path: thin elongated points in 4 directions -->
+    <!-- Top spike is longest, others balanced -->
+    <path d="M 0,-32 L 3.2,-3.8 L 0,0 L -3.2,-3.8 Z
+             M 0,-32 L 3.2,-3.8 L 19,0 L 3.2,3.8 L 0,18
+             L -3.2,3.8 L -19,0 L -3.2,-3.8 Z"
+          fill="white"/>
+    <!-- Bright center point -->
+    <circle cx="0" cy="0" r="2.8" fill="white"/>
+    <!-- Small secondary top spike for the upward trail effect -->
+    <path d="M 0,-32 L 1.2,-38 L 0,-48 L -1.2,-38 Z" fill="white" opacity="0.7"/>
+  </g>
+
+  <!-- OPERA in white -->
+  <text
+    y="140"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="72"
+    letter-spacing="10"
+    fill="#FFFFFF">
+    <tspan x="54">OPERA</tspan>
+  </text>
+
+  <!-- X in indigo with glow -->
+  <text
+    y="140"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="72"
+    letter-spacing="10"
+    fill="#6366f1"
+    filter="url(#xGlow)">
+    <tspan x="358">X</tspan>
+  </text>
+
+  <!-- ON in lighter indigo -->
+  <text
+    y="140"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="72"
+    letter-spacing="10"
+    fill="#818cf8">
+    <tspan x="416">ON</tspan>
+  </text>
+</svg>
