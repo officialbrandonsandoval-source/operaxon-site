@@ -12,6 +12,7 @@ export default function Tier1Page() {
     <main className="bg-[#0a0a0a] text-white min-h-screen font-sans">
       <Nav />
       <Hero />
+      <FoundingClient />
       <WhatThisIs />
       <WhatYouGet />
       <Pricing />
@@ -22,6 +23,43 @@ export default function Tier1Page() {
       <FinalCTA />
       <Footer />
     </main>
+  );
+}
+
+/* ─── FOUNDING CLIENT ─── */
+function FoundingClient() {
+  return (
+    <section className="py-16 px-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="relative border border-[#f59e0b]/40 bg-[#f59e0b]/5 rounded-2xl p-8 text-center overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#f59e0b] via-[#fbbf24] to-[#f59e0b]" />
+          <div className="inline-block bg-[#f59e0b]/20 border border-[#f59e0b]/40 text-[#fbbf24] text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+            🔥 Founding Client Offer — 2 of 3 Spots Left
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            30 days free.<br />
+            <span className="text-[#fbbf24]">$297/mo locked in forever after.</span>
+          </h2>
+          <p className="text-white/60 text-lg mb-6 leading-relaxed max-w-xl mx-auto">
+            I'm taking on 3 founding clients at no cost for the first 30 days. After that, your rate locks in at $297/mo — grandfathered for life, even when the public price moves to $497.
+          </p>
+          <p className="text-white/40 text-sm mb-8">
+            Only ask: an honest testimonial (voice note or video) after your first month.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+            <a
+              href="/onboarding"
+              className="bg-[#f59e0b] hover:bg-[#d97706] text-black font-bold px-8 py-4 rounded-xl transition-colors text-lg"
+            >
+              Claim a Founding Spot →
+            </a>
+          </div>
+          <p className="text-white/30 text-xs">
+            No credit card required to start · 72-hour delivery · Cancel anytime after trial
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }
 
