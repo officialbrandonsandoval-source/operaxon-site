@@ -3,18 +3,26 @@ import { NextRequest, NextResponse } from "next/server";
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!;
 
-async function sendTelegram(message: string) {
+async function sendTelegram(message: string): Promise<{ ok: boolean; error?: string }> {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text: message,
-      parse_mode: "Markdown",
-    }),
-  });
-  return res.ok;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: "Markdown",
+      }),
+    });
+    const body = await res.json();
+    if (!res.ok) {
+      return { ok: false, error: JSON.stringify(body) };
+    }
+    return { ok: true };
+  } catch (e: unknown) {
+    return { ok: false, error: String(e) };
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -55,10 +63,10 @@ export async function POST(req: NextRequest) {
 
 → Reply within 1 hour for best conversion`;
 
-    const sent = await sendTelegram(message);
-    if (!sent) {
-      console.error("Telegram delivery failed — check BOT_TOKEN and CHAT_ID env vars");
-      return NextResponse.json({ error: "Telegram delivery failed" }, { status: 500 });
+    const result = await sendTelegram(message);
+    if (!result.ok) {
+      console.error("Telegram delivery failed:", result.error);
+      return NextResponse.json({ error: "Telegram delivery failed", detail: result.error, tokenSet: !!TELEGRAM_BOT_TOKEN, chatIdSet: !!TELEGRAM_CHAT_ID }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
