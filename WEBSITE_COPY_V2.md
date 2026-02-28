@@ -161,7 +161,7 @@ Your morning brief arrives. Your agent is watching. You start making better deci
 ---
 
 ### TIER 1: SOLO OPERATOR
-**$497 setup + $497/mo**
+**$997 setup + $997/mo**
 
 For individual founders and executives who want an operating intelligence in their corner — one agent, fully deployed, working 24/7 on your business.
 
@@ -178,8 +178,8 @@ For individual founders and executives who want an operating intelligence in the
 
 ---
 
-### TIER 2: TEAM OS ← Most Popular
-**$997 setup + $997/mo**
+### TIER 2: BUSINESS OS ← Most Popular
+**$1,997 setup + $1,997/mo**
 
 For small teams who need coordinated intelligence — up to 3 agents deployed across your operation, each with their own identity and role.
 
@@ -225,7 +225,7 @@ One research analyst: $4,000–$6,000/mo.
 One ops coordinator: $3,000–$5,000/mo.
 Total: $12,000–$19,000/mo for human hours.
 
-Operaxon Solo Operator: $497/mo. Works 24/7. Compounds every week. No benefits, no sick days, no two-week notice.
+Operaxon Solo Operator: $997/mo. Works 24/7. Compounds every week. No benefits, no sick days, no two-week notice.
 
 ---
 
@@ -280,7 +280,7 @@ A regular AI setup is software waiting for a prompt. An Autonomous Operating Int
 Other installers configure software. They set up OpenClaw on a server, connect your tools, and hand it to you. The agent has no name, no memory architecture, no mission. You're client #47 on their template. Operaxon builds an agent that knows YOUR business — your competitors, your customers, your industry, your rhythm. And we evolve it every month. This isn't setup + maintenance. It's ongoing intelligence.
 
 **Do you hide your pricing?**
-No. $497 setup + $497/mo for Solo Operator. $997 setup + $997/mo for Team OS. Custom for Enterprise. That's it. We show our prices because we're confident in what they deliver.
+No. $997 setup + $997/mo for Solo Operator. $1,997 setup + $1,997/mo for Business OS. Custom for Enterprise. That's it. We show our prices because we're confident in what they deliver.
 
 **What do I actually receive every day?**
 A structured intelligence brief in Telegram by 7 AM. It covers: your top priority, competitive moves, market intelligence, industry news relevant to your business, content drafts ready to post, and specific action items. Read it in 5 minutes. Act on it all day.
@@ -323,7 +323,7 @@ Operaxon deploys in 72 hours. By day 4, your morning brief is waiting.
 **Secondary:** Questions? Email brandon@operaxon.com
 
 **Below button:**
-Solo Operator: $497 setup + $497/mo · Team OS: $997 setup + $997/mo · Enterprise: Let's talk
+Solo Operator: $997 setup + $997/mo · Business OS: $1,997 setup + $1,997/mo · Enterprise: Let's talk
 
 ---
 

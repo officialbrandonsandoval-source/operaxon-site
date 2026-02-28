@@ -41,6 +41,7 @@ function Nav() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-white/60">
           <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <a href="/workflows" className="hover:text-white transition-colors">Live Workflows</a>
           <a href="#story" className="hover:text-white transition-colors">Our Story</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </nav>
@@ -369,10 +370,14 @@ function Pricing() {
           <br />
           No "contact us for pricing."
         </h2>
-        <p className="text-white/40 text-lg mb-16 max-w-xl leading-relaxed">
-          We show our prices because we're confident in what they deliver.
-          We want clients who are serious — not clients who need to be surprised into a sale.
+        <p className="text-white/40 text-lg mb-6 max-w-xl leading-relaxed">
+          Hardware is priced at cost — Apple retail. Real money is in what the agent delivers every month.
+          Bring your own Mac and skip the device fee entirely.
         </p>
+        <div className="inline-flex items-center gap-2 text-white/40 text-sm border border-white/10 bg-white/3 rounded-full px-4 py-1.5 mb-14">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+          Own a Mac already? Same monthly. Just skip the device line.
+        </div>
 
         {/* Three tiers */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -380,23 +385,26 @@ function Pricing() {
           {/* Tier 1: Solo Operator */}
           <div className="border border-white/10 bg-[#0d0d0d] rounded-2xl p-8 flex flex-col">
             <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Solo Operator</div>
-            <h3 className="text-xl font-bold mb-1">Individual</h3>
-            <p className="text-white/35 text-sm mb-6">Founder or executive. One agent, fully deployed.</p>
-            <div className="mb-6">
-              <div className="text-white/35 text-sm mb-1">$497 one-time setup, then</div>
+            <h3 className="text-xl font-bold mb-1">Mac mini M4</h3>
+            <p className="text-white/35 text-sm mb-6">One agent. Local models + API access. Runs 24/7 on your hardware.</p>
+            <div className="mb-2">
+              <div className="text-white/30 text-xs mb-1">Device (optional) — Mac mini M4 16GB</div>
+              <div className="text-white/50 text-sm font-semibold mb-3">$599 <span className="text-white/25 font-normal">at cost</span></div>
+              <div className="text-white/35 text-sm mb-1">$997 one-time setup, then</div>
               <div className="text-4xl font-bold">
-                $497<span className="text-white/35 text-base font-normal">/mo</span>
+                $997<span className="text-white/35 text-base font-normal">/mo</span>
               </div>
             </div>
+            <div className="border-t border-white/5 my-5" />
             <ul className="space-y-3 mb-8 text-sm text-white/55 flex-1">
               {[
                 "1 Autonomous Operating Intelligence",
                 "Custom identity, memory, and mission",
-                "Daily intelligence brief (7 AM, Telegram)",
+                "Daily intelligence brief (Telegram delivery)",
                 "Competitor monitoring (up to 3)",
+                "Local models + Anthropic/OpenAI API",
                 "Content drafts (3/week)",
                 "Monthly strategy review call",
-                "Ongoing monthly optimization",
               ].map((f, i) => (
                 <li key={i} className="flex gap-2 items-start">
                   <span className="text-[#6366f1]/70 mt-0.5 shrink-0">✓</span>
@@ -404,40 +412,42 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/25 text-xs mb-5">Best for: Solo founders, independent executives, individual operators</p>
+            <p className="text-white/25 text-xs mb-5">Best for: Solo founders, individual operators, first-time deployers</p>
             <a
               href="/apply"
               className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Apply for Solo Operator →
+              Apply — Solo Operator →
             </a>
           </div>
 
-          {/* Tier 2: Team OS — Most Popular */}
+          {/* Tier 2: Solo Operator — Most Popular */}
           <div className="border border-[#6366f1] bg-[#0c0c14] rounded-2xl p-8 flex flex-col relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#6366f1] text-white text-xs font-bold px-4 py-1 rounded-full">
               Most Popular
             </div>
-            <div className="text-[#818cf8] text-xs font-bold uppercase tracking-widest mb-3">Team OS</div>
-            <h3 className="text-xl font-bold mb-1">Small Team</h3>
-            <p className="text-white/40 text-sm mb-6">Up to 3 coordinated agents across your operation.</p>
-            <div className="mb-6">
+            <div className="text-[#818cf8] text-xs font-bold uppercase tracking-widest mb-3">Solo Operator</div>
+            <h3 className="text-xl font-bold mb-1">Mac mini M4 Pro</h3>
+            <p className="text-white/40 text-sm mb-6">Up to 3 agents. More RAM, heavier local models, full cron suite.</p>
+            <div className="mb-2">
+              <div className="text-white/35 text-xs mb-1">Device (optional) — Mac mini M4 Pro 24GB</div>
+              <div className="text-white/55 text-sm font-semibold mb-3">$799 <span className="text-white/30 font-normal">at cost</span></div>
               <div className="text-white/40 text-sm mb-1">$997 one-time setup, then</div>
               <div className="text-4xl font-bold text-white">
                 $997<span className="text-white/40 text-base font-normal">/mo</span>
               </div>
             </div>
+            <div className="border-t border-white/10 my-5" />
             <ul className="space-y-3 mb-8 text-sm text-white/60 flex-1">
               {[
                 "Up to 3 Autonomous Operating Intelligences",
-                "Coordinated agent network (shared context)",
-                "Daily briefs for each agent's domain",
+                "Coordinated agents (shared memory + context)",
+                "Daily briefs per agent domain",
                 "Competitor monitoring (up to 10)",
-                "Content drafts + research support",
-                "Team-level market intelligence",
+                "Content Scout — trending opportunities daily",
+                "Full cron automation suite",
                 "Bi-weekly strategy review calls",
                 "Priority support (same-day response)",
-                "Ongoing capability expansion",
               ].map((f, i) => (
                 <li key={i} className="flex gap-2 items-start">
                   <span className="text-[#6366f1] mt-0.5 shrink-0">✓</span>
@@ -445,34 +455,39 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/30 text-xs mb-5">Best for: Founding teams, COO + CEO combos, small business operators</p>
+            <p className="text-white/30 text-xs mb-5">Best for: Founders scaling, COO + CEO combos, operators who need more horsepower</p>
             <a
               href="/apply"
               className="block w-full text-center bg-[#6366f1] hover:bg-[#5254cc] text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Apply for Team OS →
+              Apply — Solo Operator →
             </a>
           </div>
 
-          {/* Tier 3: Enterprise OS */}
+          {/* Tier 3: Business OS */}
           <div className="border border-white/10 bg-[#0d0d0d] rounded-2xl p-8 flex flex-col">
-            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Enterprise OS</div>
-            <h3 className="text-xl font-bold mb-1">Full Civilization</h3>
-            <p className="text-white/35 text-sm mb-6">5+ agents. Cross-functional. Dedicated support.</p>
-            <div className="mb-6">
-              <div className="text-white/35 text-sm mb-1">Custom scoping, then</div>
-              <div className="text-4xl font-bold text-white">Custom</div>
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Business OS</div>
+            <h3 className="text-xl font-bold mb-1">Mac Studio M4 Max</h3>
+            <p className="text-white/35 text-sm mb-6">Full civilization. 5+ agents. Maximum local AI horsepower.</p>
+            <div className="mb-2">
+              <div className="text-white/30 text-xs mb-1">Device (optional) — Mac Studio M4 Max 48GB</div>
+              <div className="text-white/50 text-sm font-semibold mb-3">$2,499 <span className="text-white/25 font-normal">at cost</span></div>
+              <div className="text-white/35 text-sm mb-1">$1,997 one-time setup, then</div>
+              <div className="text-4xl font-bold text-white">
+                $1,997<span className="text-white/35 text-base font-normal">/mo</span>
+              </div>
             </div>
+            <div className="border-t border-white/5 my-5" />
             <ul className="space-y-3 mb-8 text-sm text-white/55 flex-1">
               {[
                 "5+ Autonomous Operating Intelligences",
                 "Full agent civilization architecture",
                 "Custom integrations (CRM, ERP, any system)",
-                "Dedicated Operaxon operator (named POC)",
+                "Maximum local model capability (70B+)",
                 "Weekly strategy calls",
                 "Custom intelligence dashboards",
-                "SLA guarantees",
                 "First access to new capabilities",
+                "Named point of contact (Brandon)",
               ].map((f, i) => (
                 <li key={i} className="flex gap-2 items-start">
                   <span className="text-[#6366f1]/70 mt-0.5 shrink-0">✓</span>
@@ -480,12 +495,12 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/25 text-xs mb-5">Best for: Dealership groups, agencies, multi-location operations</p>
+            <p className="text-white/25 text-xs mb-5">Best for: Dealership groups, agencies, operators who want the full stack</p>
             <a
-              href="mailto:brandon@operaxon.com"
+              href="/apply"
               className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Talk to Brandon →
+              Apply — Business OS →
             </a>
           </div>
         </div>
@@ -512,7 +527,7 @@ function Pricing() {
             </div>
             <div className="bg-[#6366f1]/8 border border-[#6366f1]/20 rounded-xl p-6">
               <p className="text-[#6366f1] font-bold text-lg mb-2">Operaxon Solo Operator</p>
-              <p className="text-4xl font-bold text-white mb-2">$497<span className="text-white/30 text-base font-normal">/mo</span></p>
+              <p className="text-4xl font-bold text-white mb-2">$997<span className="text-white/30 text-base font-normal">/mo</span></p>
               <p className="text-white/40 text-sm leading-relaxed">
                 Works 24/7. Compounds every week. No benefits, no sick days, no two-week notice.
                 And it gets smarter, not stagnant.
@@ -611,7 +626,7 @@ function FAQ() {
     },
     {
       q: "Do you hide your pricing?",
-      a: "No. Solo Operator: $497 setup + $497/mo. Team OS: $997 setup + $997/mo. Enterprise: custom. That's the full picture. We show our prices because we're confident in what they deliver, and because we want clients who are serious about this — not clients who need to be surprised into a sale.",
+      a: "No. Solo Operator: $997 setup + $997/mo. Business OS: $1,997 setup + $1,997/mo. Enterprise OS: $2,500–$5,000/mo custom. Hardware is priced at Apple retail cost — we don't mark it up. Bring your own Mac and skip the device fee entirely. We show our prices because we're confident in what they deliver.",
     },
     {
       q: "What do I actually get every day?",
@@ -623,7 +638,7 @@ function FAQ() {
     },
     {
       q: "What hardware do I need?",
-      a: "A Mac mini (M2 or later). You can use one you own, or we'll source and configure one. Your agent runs on hardware you physically control — your data never leaves your office. No shared servers. No cloud dependencies you don't own. This is yours.",
+      a: "A Mac mini or Mac Studio (M2 or later). You can use one you already own, or we'll source and configure one at Apple retail cost — no markup. Solo Operator uses a Mac mini M4 ($599) or M4 Pro ($799), Business OS uses a Mac Studio M4 Max ($2,499). Your agent runs on hardware you physically control — your data never leaves your office.",
     },
     {
       q: "Who is this NOT for?",
@@ -709,7 +724,7 @@ function FinalCTA() {
           Apply for a Spot →
         </a>
         <p className="text-white/25 text-sm mb-2">
-          Solo Operator: $497 setup + $497/mo &nbsp;·&nbsp; Team OS: $997 setup + $997/mo &nbsp;·&nbsp; Enterprise: Let's talk
+          Solo Operator: $997 setup + $997/mo &nbsp;·&nbsp; Business OS: $1,997 setup + $1,997/mo &nbsp;·&nbsp; Enterprise OS: $2,500–$5,000/mo custom
         </p>
         <p className="text-white/20 text-sm">
           Questions?{" "}

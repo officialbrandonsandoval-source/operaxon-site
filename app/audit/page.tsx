@@ -1,471 +1,250 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+'use client';
 
-type Answers = {
-  businessType: string;
-  employees: string;
-  leadResponse: string;
-  adminTime: string;
-  aiTools: string[];
-  leadFallthrough: string;
-  automation: string;
-  bottleneck: string;
-};
+import { useState } from 'react';
 
-/* ─── SCORING ─── */
-function calculateScore(answers: Partial<Answers>): number {
-  let score = 0;
+const questions = [
+  {
+    id: 'team',
+    question: 'How many people are actively running your business operations?',
+    options: [
+      { label: 'Just me', value: 1 },
+      { label: '2-5 people', value: 2 },
+      { label: '6-20 people', value: 3 },
+      { label: '20+ people', value: 4 },
+    ],
+  },
+  {
+    id: 'ai_current',
+    question: 'What best describes your current AI setup?',
+    options: [
+      { label: "Nothing — I haven't deployed anything", value: 1 },
+      { label: 'ChatGPT for writing, occasionally', value: 2 },
+      { label: 'A few AI tools, some automations', value: 3 },
+      { label: 'Serious infrastructure, actively building', value: 4 },
+    ],
+  },
+  {
+    id: 'research_time',
+    question: 'How many hours per week do you spend on research, monitoring, and staying informed?',
+    options: [
+      { label: "I don't — I fly blind", value: 1 },
+      { label: '1-3 hours (scattered, reactive)', value: 2 },
+      { label: '4-8 hours (regular but manual)', value: 3 },
+      { label: "8+ hours (it's a real problem)", value: 4 },
+    ],
+  },
+  {
+    id: 'competitor_awareness',
+    question: 'How quickly do you know when a competitor makes a significant move?',
+    options: [
+      { label: 'Usually weeks or months later', value: 1 },
+      { label: 'Within a week if I happen to check', value: 2 },
+      { label: 'Within a few days via alerts', value: 3 },
+      { label: 'Same day — I have systems for this', value: 4 },
+    ],
+  },
+  {
+    id: 'morning',
+    question: 'How do you typically start your workday?',
+    options: [
+      { label: 'Reactive — email, Slack, whatever is on fire', value: 4 },
+      { label: 'Some structure, but still catching up', value: 3 },
+      { label: 'I have a routine but it is manual', value: 2 },
+      { label: 'Strong systems — I start informed and ahead', value: 1 },
+    ],
+  },
+  {
+    id: 'hardware',
+    question: "What's your current Mac situation?",
+    options: [
+      { label: 'No Mac — Windows or no dedicated machine', value: 1 },
+      { label: 'I have a MacBook I could dedicate', value: 2 },
+      { label: 'I have a Mac mini (M1/M2/M3/M4)', value: 3 },
+      { label: 'I have a Mac Studio or high-end Mac', value: 4 },
+    ],
+  },
+  {
+    id: 'bottleneck',
+    question: "What's the single biggest bottleneck to growing your business?",
+    options: [
+      { label: 'Not enough time', value: 4 },
+      { label: 'Not enough information to make fast decisions', value: 3 },
+      { label: "Can't scale without hiring", value: 2 },
+      { label: 'Need better systems and processes', value: 3 },
+    ],
+  },
+];
 
-  // Q2: Employees (max 14)
-  const empScores: Record<string, number> = {
-    just_me: 6,
-    "2_10": 8,
-    "11_50": 10,
-    "51_200": 12,
-    "200plus": 14,
-  };
-  score += empScores[answers.employees ?? ""] ?? 0;
+const tiers = [
+  {
+    name: 'Starter',
+    min: 0, max: 40,
+    color: '#10b981',
+    headline: "You're leaving serious leverage on the table.",
+    body: "The fundamentals are all fixable. A single autonomous agent delivering daily intelligence and handling your research overhead is the highest-leverage move you can make right now.",
+    device: 'Mac mini M4 (16GB) — $599 at cost',
+    setup: '$297 one-time setup',
+    monthly: '$297/mo',
+    includes: ['1 autonomous agent', 'Daily intelligence brief', 'Competitor monitoring (up to 3)', 'Content drafts 3x/week', 'Monthly strategy call'],
+  },
+  {
+    name: 'Operator',
+    min: 41, max: 70,
+    color: '#6366f1',
+    headline: "You're ready for a serious deployment.",
+    body: "You understand the problem and have some systems — you just need the right infrastructure. The Operator tier gives you the horsepower to run multiple coordinated agents and the full intelligence suite.",
+    device: 'Mac mini M4 Pro (24GB) — $799 at cost',
+    setup: '$497 one-time setup',
+    monthly: '$497/mo',
+    includes: ['Up to 3 coordinated agents', 'Daily brief per agent domain', 'Competitor monitoring (up to 10)', 'Content Scout daily', 'Full cron suite', 'Bi-weekly strategy calls'],
+  },
+  {
+    name: 'Studio',
+    min: 71, max: 100,
+    color: '#8b5cf6',
+    headline: 'You need the full stack.',
+    body: "Your operation is complex and you need maximum horsepower — both in intelligence capability and the number of agents working in parallel. The Studio tier is built for operators who want the full civilization.",
+    device: 'Mac Studio M4 Max (48GB) — $2,499 at cost',
+    setup: '$997 one-time setup',
+    monthly: '$997/mo',
+    includes: ['5+ autonomous agents', 'Full civilization architecture', 'Custom integrations', 'Weekly strategy calls', '70B+ local model capability', 'Named POC (Brandon)'],
+  },
+];
 
-  // Q3: Lead response time (max 16)
-  const responseScores: Record<string, number> = {
-    "5min": 16,
-    "1hour": 12,
-    same_day: 8,
-    next_day: 4,
-    dont_track: 0,
-  };
-  score += responseScores[answers.leadResponse ?? ""] ?? 0;
-
-  // Q4: Admin time (max 16, inverted — less waste = more ready)
-  const adminScores: Record<string, number> = {
-    lt_2h: 16,
-    "2_5h": 12,
-    "5_10h": 8,
-    "10_20h": 4,
-    gt_20h: 0,
-  };
-  score += adminScores[answers.adminTime ?? ""] ?? 0;
-
-  // Q5: AI tools (max 16)
-  const aiTools = answers.aiTools ?? [];
-  if (aiTools.includes("custom_ai")) {
-    score += 16;
-  } else if (!aiTools.includes("no_ai")) {
-    let aiScore = 0;
-    if (aiTools.includes("chatgpt")) aiScore += 3;
-    if (aiTools.includes("crm_ai")) aiScore += 4;
-    if (aiTools.includes("automated_email")) aiScore += 4;
-    if (aiTools.includes("ai_scheduling")) aiScore += 4;
-    score += Math.min(aiScore, 16);
-  }
-
-  // Q6: Lead fallthrough (max 16, inverted)
-  const fallthroughScores: Record<string, number> = {
-    rarely: 16,
-    occasionally: 12,
-    regularly: 8,
-    constantly: 4,
-    no_visibility: 0,
-  };
-  score += fallthroughScores[answers.leadFallthrough ?? ""] ?? 0;
-
-  // Q7: Automation (max 16)
-  const workflowScores: Record<string, number> = {
-    multiple_247: 16,
-    basic_auto: 8,
-    everything_stops: 2,
-    not_sure: 1,
-  };
-  score += workflowScores[answers.automation ?? ""] ?? 0;
-
-  // Q8: Bottleneck — 6 pts for any honest answer
-  if (answers.bottleneck) score += 6;
-
-  return Math.min(score, 100);
+function getScore(answers: Record<string, number>): number {
+  const total = Object.values(answers).reduce((a, b) => a + b, 0);
+  const max = questions.length * 4;
+  return Math.round((total / max) * 100);
 }
 
-/* ─── QUESTIONS ─── */
-const QUESTIONS = [
-  {
-    id: "businessType",
-    question: "What type of business do you run?",
-    multi: false,
-    options: [
-      { label: "Car dealership", value: "car_dealership" },
-      { label: "Service business (HVAC, plumbing, landscaping, etc.)", value: "service" },
-      { label: "Agency (marketing, creative, digital)", value: "agency" },
-      { label: "Professional services (law, accounting, consulting)", value: "professional" },
-      { label: "E-commerce / retail", value: "ecommerce" },
-      { label: "Other", value: "other" },
-    ],
-  },
-  {
-    id: "employees",
-    question: "How many employees do you have?",
-    multi: false,
-    options: [
-      { label: "Just me (1)", value: "just_me" },
-      { label: "2–10", value: "2_10" },
-      { label: "11–50", value: "11_50" },
-      { label: "51–200", value: "51_200" },
-      { label: "200+", value: "200plus" },
-    ],
-  },
-  {
-    id: "leadResponse",
-    question: "How quickly does your team respond to new leads?",
-    multi: false,
-    options: [
-      { label: "Within 5 minutes", value: "5min" },
-      { label: "Within 1 hour", value: "1hour" },
-      { label: "Same day", value: "same_day" },
-      { label: "Next day or longer", value: "next_day" },
-      { label: "We don't track this", value: "dont_track" },
-    ],
-  },
-  {
-    id: "adminTime",
-    question: "How much of your week is spent on admin tasks you wish were automated?",
-    multi: false,
-    options: [
-      { label: "Less than 2 hours", value: "lt_2h" },
-      { label: "2–5 hours", value: "2_5h" },
-      { label: "5–10 hours", value: "5_10h" },
-      { label: "10–20 hours", value: "10_20h" },
-      { label: "More than 20 hours", value: "gt_20h" },
-    ],
-  },
-  {
-    id: "aiTools",
-    question: "Which AI tools does your business currently use?",
-    subtitle: "Select all that apply",
-    multi: true,
-    options: [
-      { label: "ChatGPT or similar (basic)", value: "chatgpt" },
-      { label: "CRM with AI features", value: "crm_ai" },
-      { label: "Automated email / follow-up", value: "automated_email" },
-      { label: "AI scheduling or booking", value: "ai_scheduling" },
-      { label: "We don't use any AI tools", value: "no_ai" },
-      { label: "We have custom AI workflows", value: "custom_ai" },
-    ],
-  },
-  {
-    id: "leadFallthrough",
-    question: "How often do qualified leads fall through the cracks?",
-    multi: false,
-    options: [
-      { label: "Rarely — we have a tight process", value: "rarely" },
-      { label: "Occasionally — maybe 1–2/month", value: "occasionally" },
-      { label: "Regularly — it's a known problem", value: "regularly" },
-      { label: "Constantly — we lose leads every week", value: "constantly" },
-      { label: "We don't have visibility into this", value: "no_visibility" },
-    ],
-  },
-  {
-    id: "automation",
-    question: "Does your business run automated workflows while you're not working?",
-    subtitle: "Nights, weekends, holidays",
-    multi: false,
-    options: [
-      { label: "Yes — multiple systems running 24/7", value: "multiple_247" },
-      { label: "Yes — basic automations (email sequences, etc.)", value: "basic_auto" },
-      { label: "No — everything stops when the team stops", value: "everything_stops" },
-      { label: "I'm not sure what's running", value: "not_sure" },
-    ],
-  },
-  {
-    id: "bottleneck",
-    question: "What's your biggest operational bottleneck right now?",
-    multi: false,
-    options: [
-      { label: "Speed — things take too long", value: "speed" },
-      { label: "Consistency — quality varies by person", value: "consistency" },
-      { label: "Visibility — I don't know what's happening in my business", value: "visibility" },
-      { label: "Capacity — we can't take on more without hiring", value: "capacity" },
-      { label: "All of the above", value: "all" },
-    ],
-  },
-] as const;
-
-/* ─── MAIN COMPONENT ─── */
-type Phase = "landing" | "quiz" | "loading";
+function getTier(score: number) {
+  return tiers.find(t => score >= t.min && score <= t.max) ?? tiers[1];
+}
 
 export default function AuditPage() {
-  const router = useRouter();
-  const [phase, setPhase] = useState<Phase>("landing");
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Partial<Answers>>({});
-  const [multiSelected, setMultiSelected] = useState<string[]>([]);
-  const [fading, setFading] = useState(false);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const currentQ = QUESTIONS[step];
-  const progressPct = Math.round(((step + 1) / 8) * 100);
+  const answered = Object.keys(answers).length;
+  const complete = answered === questions.length;
+  const score = complete ? getScore(answers) : 0;
+  const tier = complete ? getTier(score) : null;
 
-  /* ─── handlers ─── */
-  const advance = (newAnswers: Partial<Answers>, nextStep: number) => {
-    setFading(true);
-    setTimeout(() => {
-      setAnswers(newAnswers);
-      setFading(false);
-      if (nextStep >= 8) {
-        finishQuiz(newAnswers);
-      } else {
-        setStep(nextStep);
-        setMultiSelected([]);
-      }
-    }, 220);
-  };
-
-  const handleSingleSelect = (value: string) => {
-    if (fading) return;
-    const newAnswers = { ...answers, [currentQ.id]: value };
-    advance(newAnswers, step + 1);
-  };
-
-  const handleMultiToggle = (value: string) => {
-    if (value === "no_ai") {
-      setMultiSelected(["no_ai"]);
-      return;
-    }
-    if (value === "custom_ai") {
-      setMultiSelected(["custom_ai"]);
-      return;
-    }
-    setMultiSelected((prev) => {
-      const clean = prev.filter((v) => v !== "no_ai" && v !== "custom_ai");
-      return clean.includes(value) ? clean.filter((v) => v !== value) : [...clean, value];
-    });
-  };
-
-  const handleMultiConfirm = () => {
-    if (multiSelected.length === 0) return;
-    const newAnswers = { ...answers, aiTools: multiSelected };
-    advance(newAnswers, step + 1);
-  };
-
-  const handleBack = () => {
-    if (step === 0) {
-      setPhase("landing");
-      return;
-    }
-    setFading(true);
-    setTimeout(() => {
-      setStep(step - 1);
-      const prev = QUESTIONS[step - 1];
-      if (prev.multi) {
-        setMultiSelected((answers.aiTools as string[]) ?? []);
-      }
-      setFading(false);
-    }, 150);
-  };
-
-  const finishQuiz = (finalAnswers: Partial<Answers>) => {
-    setPhase("loading");
-    const score = calculateScore(finalAnswers);
-    try {
-      localStorage.setItem(
-        "operaxon-audit-answers",
-        JSON.stringify({ answers: finalAnswers, score })
-      );
-    } catch {
-      /* localStorage unavailable */
-    }
-    setTimeout(() => {
-      router.push("/audit/results");
-    }, 2800);
-  };
-
-  /* ─── LANDING ─── */
-  if (phase === "landing") {
-    return (
-      <main className="bg-[#0a0a0a] text-white min-h-screen flex flex-col">
-        <header className="px-6 h-16 flex items-center justify-between max-w-6xl mx-auto w-full">
-          <a href="/">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="Operaxon" style={{ height: "36px", width: "auto" }} />
-          </a>
-          <a
-            href="/apply"
-            className="text-white/50 hover:text-white text-sm transition-colors"
-          >
-            Apply for a Spot →
-          </a>
-        </header>
-
-        <div className="flex-1 flex flex-col items-center justify-center px-6 py-16">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 text-[#6366f1] text-sm font-medium mb-8 border border-[#6366f1]/30 bg-[#6366f1]/10 rounded-full px-4 py-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6366f1] animate-pulse" />
-              Free · 3 Minutes · Instant Results
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-6">
-              Find out where your<br />
-              <span className="text-[#6366f1]">business stands.</span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-white/60 mb-10 max-w-xl mx-auto leading-relaxed">
-              Score your AI readiness 0–100. Get 3 personalized recommendations.
-              No fluff — just your real gap and how to close it.
-            </p>
-
-            <button
-              onClick={() => setPhase("quiz")}
-              className="bg-[#6366f1] hover:bg-[#5254cc] text-white font-semibold px-10 py-5 rounded-xl text-lg transition-all hover:scale-105 active:scale-95"
-            >
-              Start Free Audit →
-            </button>
-
-            <p className="text-white/30 text-sm mt-6">8 questions · No account required</p>
-
-            <div className="mt-16 grid grid-cols-3 gap-6 text-center">
-              {[
-                { label: "Score", sub: "0–100 AI readiness score" },
-                { label: "Insights", sub: "3 personalized recommendations" },
-                { label: "Action", sub: "Clear next steps for your business" },
-              ].map((item) => (
-                <div key={item.label} className="border border-white/5 rounded-xl p-5 bg-white/[0.02]">
-                  <p className="text-[#6366f1] font-semibold text-sm mb-1">{item.label}</p>
-                  <p className="text-white/40 text-xs leading-snug">{item.sub}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  /* ─── LOADING ─── */
-  if (phase === "loading") {
-    return (
-      <main className="bg-[#0a0a0a] text-white min-h-screen flex flex-col items-center justify-center px-6">
-        <div className="text-center">
-          <div className="relative mx-auto mb-8 w-20 h-20">
-            <div className="absolute inset-0 border-2 border-[#6366f1]/20 rounded-full" />
-            <div className="absolute inset-0 border-2 border-[#6366f1] border-t-transparent rounded-full animate-spin" />
-          </div>
-          <h2 className="text-2xl font-bold mb-3">Analyzing your business...</h2>
-          <p className="text-white/40">Building your personalized AI Readiness Report</p>
-        </div>
-      </main>
-    );
-  }
-
-  /* ─── QUIZ ─── */
   return (
-    <main className="bg-[#0a0a0a] text-white min-h-screen flex flex-col">
-      {/* Progress bar */}
-      <div className="fixed top-0 left-0 right-0 h-[3px] bg-white/10 z-50">
-        <div
-          className="h-full bg-[#6366f1] transition-all duration-500 ease-out"
-          style={{ width: `${progressPct}%` }}
-        />
-      </div>
-
-      {/* Header */}
-      <header className="pt-8 px-6 flex items-center justify-between max-w-2xl mx-auto w-full">
-        <button
-          onClick={handleBack}
-          className="text-white/40 hover:text-white transition-colors text-sm flex items-center gap-2"
-        >
-          ← Back
-        </button>
-        <span className="text-white/30 text-sm font-medium">
-          {step + 1} <span className="text-white/20">/ 8</span>
-        </span>
+    <div style={{ background: '#080808', minHeight: '100vh', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
+      {/* Nav */}
+      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(8px)', borderBottom: '1px solid rgba(255,255,255,0.05)', height: '64px', display: 'flex', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1152px', margin: '0 auto', padding: '0 24px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <a href="/" style={{ color: '#fff', fontWeight: 700, fontSize: '18px', textDecoration: 'none', letterSpacing: '-0.5px' }}>OPERA<span style={{ color: '#6366f1' }}>X</span>ON</a>
+          <a href="/apply" style={{ background: '#6366f1', color: '#fff', fontSize: '14px', fontWeight: 500, padding: '8px 16px', borderRadius: '6px', textDecoration: 'none' }}>Apply for a Spot</a>
+        </div>
       </header>
 
-      {/* Question */}
-      <div className="flex-1 flex flex-col max-w-2xl mx-auto w-full px-6 pt-10 pb-16">
-        <div
-          className="transition-opacity duration-200"
-          style={{ opacity: fading ? 0 : 1 }}
-        >
-          <p className="text-[#6366f1] text-xs font-bold uppercase tracking-widest mb-5">
-            Question {step + 1} of 8
-          </p>
+      <div style={{ maxWidth: '640px', margin: '0 auto', padding: '100px 24px 80px' }}>
 
-          <h1 className="text-2xl md:text-3xl font-bold leading-snug mb-2">
-            {currentQ.question}
-          </h1>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <p style={{ color: '#6366f1', fontSize: '12px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '16px' }}>AI OS Readiness Assessment</p>
+          <h1 style={{ fontSize: '32px', fontWeight: 700, marginBottom: '12px', lineHeight: 1.2 }}>How ready is your business for an AI operating system?</h1>
+          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '15px', lineHeight: 1.6 }}>7 questions. 3 minutes. We tell you exactly which tier fits and what it would do for your operation.</p>
+          {/* Progress */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '20px' }}>
+            <div style={{ height: '4px', borderRadius: '2px', background: '#6366f1', width: `${Math.max(4, (answered / questions.length) * 200)}px`, transition: 'width 0.3s' }} />
+            <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px' }}>{answered}/{questions.length}</span>
+          </div>
+        </div>
 
-          {"subtitle" in currentQ && currentQ.subtitle && (
-            <p className="text-white/40 text-sm mb-8">{currentQ.subtitle}</p>
-          )}
-          {(!("subtitle" in currentQ) || !currentQ.subtitle) && (
-            <div className="mb-8" />
-          )}
-
-          {/* Multi-select (Q5) */}
-          {currentQ.multi ? (
-            <div className="space-y-3">
-              {currentQ.options.map((opt) => {
-                const selected = multiSelected.includes(opt.value);
-                return (
-                  <button
-                    key={opt.value}
-                    onClick={() => handleMultiToggle(opt.value)}
-                    className={`w-full text-left px-5 py-4 rounded-xl border transition-all ${
-                      selected
-                        ? "border-[#6366f1] bg-[#6366f1]/10 text-white"
-                        : "border-white/10 bg-white/[0.03] text-white/70 hover:border-white/25 hover:text-white"
-                    }`}
-                  >
-                    <span className="flex items-center gap-3">
-                      <span
-                        className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
-                          selected ? "border-[#6366f1] bg-[#6366f1]" : "border-white/20"
-                        }`}
+        {/* Questions */}
+        {!submitted && (
+          <div>
+            {questions.map((q, qi) => (
+              <div key={q.id} style={{ marginBottom: '32px' }}>
+                <p style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px', color: '#fff' }}>
+                  <span style={{ color: '#6366f1', marginRight: '8px', fontSize: '13px' }}>{String(qi + 1).padStart(2, '0')}</span>
+                  {q.question}
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {q.options.map((opt) => {
+                    const selected = answers[q.id] === opt.value && q.id in answers;
+                    return (
+                      <label
+                        key={`${q.id}-${opt.label}`}
+                        style={{ display: 'flex', alignItems: 'center', gap: '12px', background: selected ? 'rgba(99,102,241,0.12)' : '#111827', border: `1px solid ${selected ? '#6366f1' : '#1e293b'}`, borderRadius: '10px', padding: '12px 16px', cursor: 'pointer', transition: 'all 0.15s' }}
                       >
-                        {selected && (
-                          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-                            <path
-                              d="M1 4L4 7.5L10 1"
-                              stroke="white"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        )}
-                      </span>
-                      <span className="text-sm md:text-base">{opt.label}</span>
-                    </span>
-                  </button>
-                );
-              })}
+                        <input
+                          type="radio"
+                          name={q.id}
+                          onChange={() => setAnswers(prev => ({ ...prev, [q.id]: opt.value }))}
+                          checked={selected}
+                          style={{ accentColor: '#6366f1', width: '16px', height: '16px', flexShrink: 0 }}
+                        />
+                        <span style={{ fontSize: '14px', color: selected ? '#fff' : 'rgba(203,213,225,0.8)' }}>{opt.label}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
 
+            {complete && (
               <button
-                onClick={handleMultiConfirm}
-                disabled={multiSelected.length === 0}
-                className={`w-full py-4 rounded-xl font-semibold transition-all mt-2 ${
-                  multiSelected.length > 0
-                    ? "bg-[#6366f1] hover:bg-[#5254cc] text-white"
-                    : "bg-white/5 text-white/25 cursor-not-allowed"
-                }`}
+                onClick={() => setSubmitted(true)}
+                style={{ width: '100%', background: '#6366f1', color: '#fff', border: 'none', borderRadius: '12px', padding: '16px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: '8px' }}
               >
-                Continue →
+                See My Results
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Results */}
+        {submitted && tier && (
+          <div>
+            <div style={{ textAlign: 'center', marginBottom: '40px', padding: '40px', background: '#0d0d0d', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px' }}>
+              <div style={{ fontSize: '72px', fontWeight: 800, color: tier.color, lineHeight: 1, marginBottom: '8px' }}>{score}</div>
+              <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px', marginBottom: '20px' }}>out of 100</div>
+              <h2 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>{tier.headline}</h2>
+              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', lineHeight: 1.6 }}>{tier.body}</p>
+            </div>
+
+            <div style={{ background: '#0d0d0d', border: `2px solid ${tier.color}40`, borderRadius: '20px', padding: '32px', marginBottom: '24px' }}>
+              <p style={{ color: tier.color, fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '8px' }}>Recommended Tier</p>
+              <h3 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '4px' }}>{tier.name}</h3>
+              <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '13px', marginBottom: '20px' }}>{tier.device}</p>
+              <div style={{ marginBottom: '8px' }}>
+                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', marginBottom: '2px' }}>{tier.setup}</div>
+                <div style={{ fontSize: '36px', fontWeight: 800, color: tier.color }}>{tier.monthly}</div>
+              </div>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', margin: '20px 0' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '28px' }}>
+                {tier.includes.map((item, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>
+                    <span style={{ color: tier.color }}>✓</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <a href="/apply" style={{ display: 'block', textAlign: 'center', background: tier.color, color: '#fff', padding: '14px', borderRadius: '10px', fontWeight: 600, fontSize: '15px', textDecoration: 'none' }}>
+                Apply for {tier.name}
+              </a>
+            </div>
+
+            <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '12px', marginBottom: '16px' }}>
+              Month-to-month. No contracts. Hardware at Apple cost, or use what you have.
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <button onClick={() => { setAnswers({}); setSubmitted(false); }} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.3)', padding: '8px 20px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px', fontFamily: 'inherit' }}>
+                Retake assessment
               </button>
             </div>
-          ) : (
-            /* Single-select */
-            <div className="space-y-3">
-              {currentQ.options.map((opt) => (
-                <button
-                  key={opt.value}
-                  onClick={() => handleSingleSelect(opt.value)}
-                  className="w-full text-left px-5 py-4 rounded-xl border border-white/10 bg-white/[0.03] text-white/70 hover:border-[#6366f1]/60 hover:bg-[#6366f1]/8 hover:text-white transition-all text-sm md:text-base"
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </main>
+
+      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '32px 24px', textAlign: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '13px' }}>
+        <p>Operaxon · <a href="/" style={{ color: 'rgba(255,255,255,0.2)', textDecoration: 'none' }}>Home</a> · <a href="/apply" style={{ color: 'rgba(255,255,255,0.2)', textDecoration: 'none' }}>Apply</a> · brandon@operaxon.com</p>
+      </footer>
+    </div>
   );
 }

@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
     const email = data.email || "—";
     const phone = data.phone || "—";
     const telegram = data.telegram || "—";
+    const tier = data.tier || "—";
     const business = data.business || "—";
     const revenue = data.revenue || "—";
     const competitors = data.competitors || "—";
@@ -45,10 +46,15 @@ export async function POST(req: NextRequest) {
     const hardware = data.hardware || "—";
     const notes = data.notes || "—";
 
+    const tierEmoji: Record<string, string> = { starter: "🟢", operator: "🟡", studio: "🔵" };
+    const tierLabel: Record<string, string> = { starter: "Starter ($297/mo)", operator: "Operator ($497/mo)", studio: "Studio ($997/mo)" };
+
     // Escape HTML special chars in user-provided fields
     const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
     const message = `🔥 <b>NEW OPERAXON LEAD</b>
+
+${tierEmoji[tier] || "⚪"} <b>Tier:</b> ${esc(tierLabel[tier] || tier)}
 
 👤 <b>${esc(name)}</b> — ${esc(role)} @ ${esc(company)}
 📧 ${esc(email)}

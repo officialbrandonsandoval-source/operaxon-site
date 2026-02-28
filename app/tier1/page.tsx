@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Agent Delivery — Operaxon",
   description:
-    "A custom AI operator, delivered to your Telegram, done-for-you. Daily intelligence briefs, competitor monitoring, and market tracking — starting at $297/mo.",
+    "A custom AI operator, delivered to your Telegram, done-for-you. Daily intelligence briefs, competitor monitoring, and market tracking — starting at $997/mo.",
 };
 
 export default function Tier1Page() {
@@ -38,10 +38,10 @@ function FoundingClient() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             30 days free.<br />
-            <span className="text-[#fbbf24]">$297/mo locked in forever after.</span>
+            <span className="text-[#fbbf24]">$997/mo locked in forever after.</span>
           </h2>
           <p className="text-white/60 text-lg mb-6 leading-relaxed max-w-xl mx-auto">
-            I'm taking on 3 founding clients at no cost for the first 30 days. After that, your rate locks in at $297/mo — grandfathered for life, even when the public price moves to $497.
+            I'm taking on 3 founding clients at no cost for the first 30 days. After that, your rate locks in at $997/mo — grandfathered for life, even when the public price moves to $1,997.
           </p>
           <p className="text-white/40 text-sm mb-8">
             Only ask: an honest testimonial (voice note or video) after your first month.
@@ -121,7 +121,7 @@ function Hero() {
             See How It Works
           </a>
         </div>
-        <p className="text-white/30 text-sm mt-6">$750 setup · $297–$497/mo · Live in 72 hours</p>
+        <p className="text-white/30 text-sm mt-6">$997 setup · $997–$1,997/mo · Live in 72 hours</p>
       </div>
     </section>
   );
@@ -219,8 +219,8 @@ function Pricing() {
         <div className="grid md:grid-cols-2 gap-6">
           {/* Starter */}
           <div className="border border-white/10 rounded-2xl p-8">
-            <div className="text-white/50 text-sm font-medium uppercase tracking-wide mb-2">Starter</div>
-            <div className="text-4xl font-bold mb-1">$297<span className="text-white/40 text-lg font-normal">/mo</span></div>
+            <div className="text-white/50 text-sm font-medium uppercase tracking-wide mb-2">Solo Operator</div>
+            <div className="text-4xl font-bold mb-1">$997<span className="text-white/40 text-lg font-normal">/mo</span></div>
             <p className="text-white/40 text-sm mb-8">The core product — powerful on its own.</p>
             <ul className="space-y-3 mb-8">
               {[
@@ -236,7 +236,7 @@ function Pricing() {
               ))}
             </ul>
             <a href="/onboarding" className="block w-full text-center border border-white/20 hover:border-[#6366f1] text-white py-3 rounded-lg transition-colors font-medium">
-              Start with Starter →
+              Apply — Solo Operator →
             </a>
           </div>
 
@@ -246,11 +246,11 @@ function Pricing() {
               Most Popular
             </div>
             <div className="text-[#818cf8] text-sm font-medium uppercase tracking-wide mb-2">Pro</div>
-            <div className="text-4xl font-bold mb-1">$497<span className="text-white/40 text-lg font-normal">/mo</span></div>
+            <div className="text-4xl font-bold mb-1">$997<span className="text-white/40 text-lg font-normal">/mo</span></div>
             <p className="text-white/40 text-sm mb-8">For operators who want full leverage.</p>
             <ul className="space-y-3 mb-8">
               {[
-                "Everything in Starter",
+                "Everything in Solo Operator",
                 "Competitor monitoring (up to 5)",
                 "Industry topic tracking (up to 6)",
                 "Weekly strategic digest",
@@ -394,10 +394,10 @@ function FAQ() {
     { q: "Can I cancel anytime?", a: "Yes. Monthly subscriptions cancel with 30 days notice — just message me. No contracts, no annual lock-in. The $750 setup fee is non-refundable once the operator is built and delivered (because that's the work), but your monthly is fully cancel-at-will." },
     { q: "How fast does it start?", a: "Goal is live within 72 hours of intake form submission and payment. Most clients get their first brief within 48 hours. If I'm running close to capacity I'll give you an honest timeline upfront before you pay." },
     { q: "Do I need to install anything?", a: "Telegram. That's it. If you already use it, there's literally nothing to install. If you don't, it's a free download and takes 2 minutes to set up. Everything else runs on my end." },
-    { q: "What if I want to change what the brief covers?", a: "Message me. I update your operator's configuration same day for Pro clients, within 48 hours for Starter. This isn't a locked black box — I tune it based on your feedback. That's part of the monthly maintenance." },
+    { q: "What if I want to change what the brief covers?", a: "Message me. I update your operator's configuration same day for Pro clients, within 48 hours for Solo Operator. This isn't a locked black box — I tune it based on your feedback. That's part of the monthly maintenance." },
     { q: "What happens if a brief doesn't arrive?", a: "I monitor delivery logs daily. If something breaks, I catch it and fix it — usually before you notice. If you notice a missed brief first, message me and I'll fire a manual one same day." },
-    { q: "Can I upgrade from Starter to Pro later?", a: "Yes. You pay the difference ($200/mo) and I build out your second deliverable. No new setup fee. Upgrades process mid-cycle and you get Pro deliverables starting the next brief cycle." },
-    { q: "What's the difference between Starter and Pro?", a: "Starter is the daily brief + on-demand Q&A — powerful on its own. Pro adds a second deliverable (your choice), a weekly strategic digest, deeper competitor tracking, a monthly tuning session, and priority support." },
+    { q: "Can I upgrade from Solo Operator to Business OS later?", a: "Yes. You pay the difference ($1,000/mo) and I build out your second deliverable. No new setup fee. Upgrades process mid-cycle and you get Pro deliverables starting the next brief cycle." },
+    { q: "What's the difference between Solo Operator and Business OS?", a: "Solo Operator is the daily brief + on-demand Q&A — powerful on its own. Pro adds a second deliverable (your choice), a weekly strategic digest, deeper competitor tracking, a monthly tuning session, and priority support." },
   ];
 
   return (

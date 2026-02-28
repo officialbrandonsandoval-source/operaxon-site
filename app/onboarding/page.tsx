@@ -20,6 +20,7 @@ export default function OnboardingPage() {
       email: fd.get('email'),
       phone: fd.get('phone'),
       telegram: fd.get('telegram'),
+      tier: fd.get('tier'),
       business: fd.get('business_description'),
       revenue: fd.get('revenue'),
       competitors: fd.get('competitors'),
@@ -118,6 +119,42 @@ export default function OnboardingPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
+
+          {/* Section 0 — Tier Selection */}
+          <div style={{ marginBottom: '40px' }}>
+            <div style={sectionTitleStyle}>Choose Your Tier</div>
+
+            <div style={{ marginBottom: '12px' }}>
+              {[
+                {
+                  value: 'starter',
+                  label: 'Solo Operator — $997/mo',
+                  sub: 'Mac mini M4 16GB ($599 at cost, optional) + $997 setup · 1 agent · Local models + API',
+                },
+                {
+                  value: 'operator',
+                  label: 'Solo Operator — $997/mo',
+                  sub: 'Mac mini M4 Pro 24GB ($799 at cost, optional) + $997 setup · Up to 3 agents · Full cron suite',
+                },
+                {
+                  value: 'studio',
+                  label: 'Business OS — $1,997/mo',
+                  sub: 'Mac Studio M4 Max 48GB ($2,499 at cost, optional) + $1,997 setup · 5+ agents · Full civilization',
+                },
+              ].map(opt => (
+                <label key={opt.value} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', background: '#111827', border: '1px solid #1e293b', borderRadius: '10px', padding: '14px 16px', marginBottom: '10px', cursor: 'pointer' }}>
+                  <input type="radio" name="tier" value={opt.value} required style={{ accentColor: '#6366f1', width: '16px', height: '16px', marginTop: '2px', flexShrink: 0 }} />
+                  <span>
+                    <span style={{ fontSize: '14px', color: '#f1f5f9', fontWeight: 600, display: 'block', marginBottom: '4px' }}>{opt.label}</span>
+                    <span style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.5 }}>{opt.sub}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+            <div style={{ fontSize: '12px', color: '#475569', marginTop: '8px' }}>
+              Already own a Mac? No problem — same monthly, same setup fee, skip the device cost.
+            </div>
+          </div>
 
           {/* Section 1 — About You */}
           <div style={{ marginBottom: '40px' }}>
@@ -240,18 +277,20 @@ export default function OnboardingPage() {
             <div style={sectionTitleStyle}>Hardware</div>
 
             <div style={fieldStyle}>
-              <label style={labelStyle}>Do you have a Mac mini? <span style={{ color: '#6366f1' }}>*</span></label>
+              <label style={labelStyle}>Hardware situation <span style={{ color: '#6366f1' }}>*</span></label>
               {[
-                { value: 'have_m4', label: 'Yes — Mac mini M4 (16GB+)' },
-                { value: 'have_older', label: 'Yes — older Mac mini (M1/M2/M3)' },
-                { value: 'need_one', label: 'No — I need one (Operaxon will source it)' },
+                { value: 'have_mac_studio', label: 'I have a Mac Studio (M4 Max/Ultra)' },
+                { value: 'have_mini_m4', label: 'I have a Mac mini M4 or M4 Pro' },
+                { value: 'have_mini_older', label: 'I have an older Mac mini (M1/M2/M3)' },
+                { value: 'have_macbook', label: 'I have a MacBook (can dedicate it)' },
+                { value: 'need_sourced', label: "I need one — please source it for me (at Apple cost, matches my tier)" },
               ].map(opt => (
                 <label key={opt.value} style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#111827', border: '1px solid #1e293b', borderRadius: '10px', padding: '12px 16px', marginBottom: '8px', cursor: 'pointer' }}>
                   <input type="radio" name="hardware" value={opt.value} required style={{ accentColor: '#6366f1', width: '16px', height: '16px' }} />
                   <span style={{ fontSize: '13px', color: '#cbd5e1' }}>{opt.label}</span>
                 </label>
               ))}
-              <div style={hintStyle}>Your Mac mini runs 24/7. After setup you never touch it again.</div>
+              <div style={hintStyle}>Your machine runs 24/7 on your network. After setup is complete, you never have to touch it again.</div>
             </div>
           </div>
 

@@ -183,8 +183,8 @@ export default function ApplyPage() {
                     className="w-full bg-[#111] border border-white/10 focus:border-[#6366f1]/60 rounded-lg px-4 py-3 text-white outline-none transition-colors text-sm appearance-none"
                   >
                     <option value="" disabled className="text-white/20">Select tier...</option>
-                    <option value="core">Core — $997/mo (Agent Delivery, no hardware)</option>
-                    <option value="command">Command — $2,500/mo (Full Mac mini installation)</option>
+                    <option value="core">Solo Operator — $997/mo (Agent Delivery, no hardware)</option>
+                    <option value="command">Business OS — $1,997/mo (Full Mac mini installation)</option>
                     <option value="both">Not sure — tell me what fits</option>
                   </select>
                 </div>
