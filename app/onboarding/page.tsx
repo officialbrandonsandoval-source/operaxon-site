@@ -53,8 +53,8 @@ export default function OnboardingPage() {
           <div style={{ fontSize: '48px', marginBottom: '24px' }}>⚔️</div>
           <h1 style={{ color: '#fff', fontSize: '28px', fontWeight: 700, marginBottom: '16px' }}>You&apos;re in the system.</h1>
           <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: 1.6, marginBottom: '32px' }}>
-            Brandon will review your answers and reach out within a few hours.
-            Your operator goes live within 72 hours. First brief fires the next morning.
+            Brandon reviews every submission personally and reaches out within a few hours.
+            Your system goes live within 72 hours. First brief fires the next morning at your exact time.
           </p>
           <p style={{ color: '#6366f1', fontSize: '14px', fontWeight: 500 }}>Done for you. First time. Right way.</p>
         </div>
@@ -114,7 +114,7 @@ export default function OnboardingPage() {
           <h1 style={{ fontSize: '26px', fontWeight: 700, marginBottom: '12px' }}>Let&apos;s build your system</h1>
           <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.6, maxWidth: '460px', margin: '0 auto' }}>
             This takes about 5 minutes. Your answers let us configure your AI operating system
-            specifically for your business — not a generic template.
+            specifically for your business — not a generic template. Starts at $497/mo.
           </p>
         </div>
 
@@ -128,31 +128,40 @@ export default function OnboardingPage() {
               {[
                 {
                   value: 'starter',
-                  label: 'Solo Operator — $997/mo',
-                  sub: 'Mac mini M4 16GB ($599 at cost, optional) + $997 setup · 1 agent · Local models + API',
+                  label: 'Starter OS — $497/mo',
+                  badge: '',
+                  sub: '$497 setup · 1 agent · Works on your existing Mac · Morning brief + competitor monitoring + daily digest · No new hardware required',
+                  best: false,
                 },
                 {
                   value: 'operator',
-                  label: 'Solo Operator — $997/mo',
-                  sub: 'Mac mini M4 Pro 24GB ($799 at cost, optional) + $997 setup · Up to 3 agents · Full cron suite',
+                  label: 'Solo Operator OS — $997/mo',
+                  badge: 'MOST POPULAR',
+                  sub: '$997 setup · 1–2 agents · Full cron suite · Mac mini M4 16GB or Pro 24GB (at cost, optional) · Morning brief + content + prospecting + monitoring, 24/7',
+                  best: true,
                 },
                 {
-                  value: 'studio',
-                  label: 'Business OS — $1,997/mo',
-                  sub: 'Mac Studio M4 Max 48GB ($2,499 at cost, optional) + $1,997 setup · 5+ agents · Full civilization',
+                  value: 'custom',
+                  label: 'Business OS — Custom',
+                  badge: '',
+                  sub: 'Starting at $2,500/mo · 3–10+ agents · Mac Studio or multi-device setup · Built entirely around your business — not a template · Full civilization build',
+                  best: false,
                 },
               ].map(opt => (
-                <label key={opt.value} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', background: '#111827', border: '1px solid #1e293b', borderRadius: '10px', padding: '14px 16px', marginBottom: '10px', cursor: 'pointer' }}>
+                <label key={opt.value} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', background: opt.best ? 'rgba(99,102,241,0.08)' : '#111827', border: opt.best ? '1px solid rgba(99,102,241,0.5)' : '1px solid #1e293b', borderRadius: '10px', padding: '14px 16px', marginBottom: '10px', cursor: 'pointer', position: 'relative' }}>
                   <input type="radio" name="tier" value={opt.value} required style={{ accentColor: '#6366f1', width: '16px', height: '16px', marginTop: '2px', flexShrink: 0 }} />
-                  <span>
-                    <span style={{ fontSize: '14px', color: '#f1f5f9', fontWeight: 600, display: 'block', marginBottom: '4px' }}>{opt.label}</span>
-                    <span style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.5 }}>{opt.sub}</span>
+                  <span style={{ flex: 1 }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '14px', color: '#f1f5f9', fontWeight: 600 }}>{opt.label}</span>
+                      {opt.badge && <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.5px', color: '#6366f1', background: 'rgba(99,102,241,0.15)', padding: '2px 8px', borderRadius: '20px' }}>{opt.badge}</span>}
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#64748b', lineHeight: 1.6 }}>{opt.sub}</span>
                   </span>
                 </label>
               ))}
             </div>
             <div style={{ fontSize: '12px', color: '#475569', marginTop: '8px' }}>
-              Already own a Mac? No problem — same monthly, same setup fee, skip the device cost.
+              Already own a Mac? No problem — same monthly rate, skip the hardware cost. Not sure which tier fits? Pick Starter and we&apos;ll tell you honestly if you need more.
             </div>
           </div>
 
