@@ -243,7 +243,7 @@ Operaxon Solo Operator: $997/mo. Works 24/7. Compounds every week. No benefits, 
 **The story:**
 My name is Brandon Sandoval. I'm a founder, father, and operator. I built Operaxon because I needed it first.
 
-In 2026 I was running Shiftly Auto (a $6M/year Chrome extension company), building new software products, starting a media presence, and trying to be a present father — all at the same time.
+In 2026 I was running a $6M/year software company, building new products, starting a media presence, and trying to be a present father — all at the same time.
 
 I had 4 hours a day to build. I couldn't afford to waste a single one.
 

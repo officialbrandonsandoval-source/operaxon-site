@@ -559,7 +559,7 @@ function BrandonsStory() {
               My name is Brandon Sandoval. I'm a founder, father, and operator. I built Operaxon because I needed it first.
             </p>
             <p>
-              In 2026 I was running Shiftly Auto — a $6M/year software company — while simultaneously building new products, launching a media presence, and showing up as a present father. Four hours a day to build. Zero margin for waste.
+              In 2026 I was running a $6M/year software company while simultaneously building new products, launching a media presence, and showing up as a present father. Four hours a day to build. Zero margin for waste.
             </p>
             <p>
               So I built what I needed: an autonomous agent I named{" "}
