@@ -24,6 +24,7 @@ export default function Home() {
       <WhatYouGet />
       <HowItWorks />
       <Pricing />
+      <Products />
       <BrandonsStory />
       <FAQ />
       <FinalCTA />
@@ -41,6 +42,7 @@ function Nav() {
         <nav className="hidden md:flex items-center gap-8 text-sm text-white/60">
           <a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a>
           <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+          <a href="#products" className="hover:text-white transition-colors">Products</a>
           <a href="/workflows" className="hover:text-white transition-colors">Live Workflows</a>
           <a href="#story" className="hover:text-white transition-colors">Our Story</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
@@ -737,6 +739,116 @@ function FinalCTA() {
   );
 }
 
+/* ─── PRODUCTS ─── */
+function Products() {
+  return (
+    <section id="products" className="py-28 px-6 border-t border-white/5">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
+        <p className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-4">Digital Products</p>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4">
+          Start Building Today.
+          <br />
+          <span className="text-white/40">No engagement required.</span>
+        </h2>
+        <p className="text-white/50 text-lg mb-12 max-w-xl">
+          Plug-and-play systems for founders ready to move fast — get the exact tools we use, set up in minutes.
+        </p>
+
+        {/* Two-lane banner */}
+        <div className="grid md:grid-cols-2 gap-px bg-white/5 rounded-xl overflow-hidden mb-12">
+          <div className="bg-[#0d0d0d] p-8 text-center">
+            <p className="text-[#6366f1] text-xs font-bold uppercase tracking-widest mb-2">🛠 Do It Yourself</p>
+            <p className="text-xl font-semibold mb-2">Buy the System</p>
+            <p className="text-white/40 text-sm leading-relaxed">Get the exact tools and templates we use. Set up in 30 minutes.</p>
+          </div>
+          <div className="bg-[#111] p-8 text-center">
+            <p className="text-[#6366f1] text-xs font-bold uppercase tracking-widest mb-2">🤝 Done For You</p>
+            <p className="text-xl font-semibold mb-2">We Build It For You</p>
+            <p className="text-white/40 text-sm leading-relaxed">
+              Custom agent stack deployed in 72 hours.{" "}
+              <a href="/apply" className="text-[#6366f1] hover:underline">Apply for a spot →</a>
+            </p>
+          </div>
+        </div>
+
+        {/* Product grid */}
+        <div className="grid md:grid-cols-3 gap-5 mb-8">
+
+          {/* Morning Brief — LIVE */}
+          <div className="relative bg-[#0d0d0d] border border-[#6366f1]/40 rounded-xl p-7 flex flex-col">
+            <span className="absolute -top-px left-6 bg-[#6366f1] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-b-md">
+              Available Now
+            </span>
+            <h3 className="text-lg font-semibold mt-3 mb-2">Morning Brief System</h3>
+            <p className="text-white/45 text-sm leading-relaxed flex-1 mb-5">
+              Wake up to a personalized AI-generated brief covering your KPIs, overnight leads, market signals, and priority tasks. Set up in 30 minutes.
+            </p>
+            <div className="text-3xl font-bold mb-4">$27</div>
+            <a
+              href="https://brandonox7.gumroad.com/l/mornin-brief-system"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center bg-[#6366f1] hover:bg-[#5254cc] text-white text-sm font-medium px-4 py-3 rounded-lg transition-colors"
+            >
+              Buy Now — $27
+            </a>
+          </div>
+
+          {/* Coming soon cards */}
+          {[
+            { name: "AI Agent Starter Kit", desc: "Everything you need to deploy your first agent stack. Templates, workflows, prompts, and step-by-step walkthroughs.", price: "$47" },
+            { name: "Content Machine Prompts", desc: "300+ battle-tested prompts for scripts, captions, hooks, and threads across YouTube, TikTok, Twitter, and Instagram.", price: "$17" },
+            { name: "Second Brain OS", desc: "A complete Notion + AI knowledge management system. Capture, connect, and recall your ideas and business intel instantly.", price: "$37" },
+            { name: "Sovereign Builder Playbook", desc: "The exact systems and frameworks Brandon uses to run multiple businesses simultaneously without bloated headcount.", price: "$57" },
+          ].map((p) => (
+            <div key={p.name} className="bg-[#0d0d0d] border border-white/5 rounded-xl p-7 flex flex-col opacity-60">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white/30 bg-white/5 border border-white/8 rounded px-2 py-1 mb-4 self-start">
+                Coming Soon
+              </span>
+              <h3 className="text-lg font-semibold mb-2">{p.name}</h3>
+              <p className="text-white/45 text-sm leading-relaxed flex-1 mb-5">{p.desc}</p>
+              <div className="text-3xl font-bold text-white/30 mb-4">{p.price}</div>
+              <span className="block text-center border border-white/10 text-white/25 text-sm font-medium px-4 py-3 rounded-lg cursor-not-allowed">
+                Notify Me
+              </span>
+            </div>
+          ))}
+
+        </div>
+
+        {/* Done-For-You CTA */}
+        <div className="relative bg-[#0d0d0d] border border-[#6366f1]/30 rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/5 to-transparent pointer-events-none" />
+          <span className="absolute -top-px right-10 bg-[#6366f1] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-b-md">
+            Done For You
+          </span>
+          <div className="relative">
+            <p className="text-[#6366f1] text-xs font-bold uppercase tracking-widest mb-2">Full Service</p>
+            <h3 className="text-2xl md:text-3xl font-bold mb-2">We Build Your Entire Agent Stack</h3>
+            <p className="text-white/45 text-sm leading-relaxed max-w-xl">
+              Custom AI agents deployed in 72 hours — built around your specific business logic, integrations, and revenue goals. Not a template. Your system, running your operation.
+            </p>
+          </div>
+          <div className="relative text-center flex-shrink-0">
+            <p className="text-white/30 text-xs mb-1">Starting at</p>
+            <div className="text-4xl font-bold text-[#6366f1] mb-1">$5k</div>
+            <p className="text-white/30 text-xs mb-5">per engagement</p>
+            <a
+              href="/apply"
+              className="block bg-[#6366f1] hover:bg-[#5254cc] text-white text-sm font-medium px-6 py-3 rounded-lg transition-colors whitespace-nowrap"
+            >
+              Book a Discovery Call
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 /* ─── FOOTER ─── */
 function Footer() {
   return (
@@ -751,6 +863,7 @@ function Footer() {
             <a href="/apply" className="hover:text-white transition-colors">Apply</a>
             <a href="#the-difference" className="hover:text-white transition-colors">The Difference</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+            <a href="#products" className="hover:text-white transition-colors">Products</a>
             <a href="#story" className="hover:text-white transition-colors">Our Story</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             <a href="mailto:brandon@operaxon.com" className="hover:text-white transition-colors">Contact</a>
