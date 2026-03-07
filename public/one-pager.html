@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operaxon — AI Operating Systems for Serious Operators</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    background: #0a0a0e;
+    color: #ffffff;
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+    font-size: 10pt;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.55in 0.6in;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  /* TOP ACCENT */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: #ff8c28;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #1e1e28;
+    margin-bottom: 20px;
+  }
+
+  .logo-block h1 {
+    font-size: 28pt;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .logo-block .tagline {
+    font-size: 9pt;
+    color: #ff8c28;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .contact-block {
+    text-align: right;
+    font-size: 8.5pt;
+    color: #8888a0;
+    line-height: 1.7;
+  }
+
+  .contact-block a, .contact-block span.hi {
+    color: #ccccdd;
+    text-decoration: none;
+  }
+
+  /* HERO STATEMENT */
+  .hero {
+    background: #111118;
+    border-left: 3px solid #ff8c28;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .hero p {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p span {
+    color: #ff8c28;
+  }
+
+  /* SECTIONS */
+  .sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    flex: 1;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .section-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ff8c28;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1e1e28;
+  }
+
+  .section-content {
+    font-size: 9pt;
+    color: #b0b0c8;
+    line-height: 1.6;
+  }
+
+  /* WHAT YOU GET — checklist */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .check-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .check-item .dot {
+    width: 14px;
+    height: 14px;
+    background: #ff8c28;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .check-item .dot::after {
+    content: '✓';
+    color: #0a0a0e;
+    font-size: 8pt;
+    font-weight: 800;
+  }
+
+  .check-item p {
+    font-size: 9pt;
+    color: #c8c8e0;
+    line-height: 1.45;
+  }
+
+  .check-item p strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* HOW IT WORKS — numbered steps */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-size: 9pt;
+    font-weight: 800;
+    color: #ff8c28;
+    min-width: 20px;
+    padding-top: 1px;
+  }
+
+  .step-text {
+    font-size: 9pt;
+    color: #c8c8e0;
+    line-height: 1.45;
+  }
+
+  .step-text strong {
+    color: #ffffff;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 1px;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .price-card {
+    background: #111118;
+    border: 1px solid #1e1e28;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+
+  .price-card.highlight {
+    border-color: #ff8c28;
+    background: #14100a;
+  }
+
+  .price-card .tier {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff8c28;
+    margin-bottom: 6px;
+  }
+
+  .price-card .amount {
+    font-size: 16pt;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .price-card .amount span {
+    font-size: 9pt;
+    font-weight: 400;
+    color: #8888a0;
+  }
+
+  .price-card .setup {
+    font-size: 8pt;
+    color: #666680;
+    margin-top: 3px;
+  }
+
+  .price-card .desc {
+    font-size: 8pt;
+    color: #8888a0;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #1e1e28;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-size: 7.5pt;
+    color: #444458;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-cta {
+    font-size: 9pt;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .footer-cta span {
+    color: #ff8c28;
+  }
+
+  /* BOTTOM BAR */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: #ff8c28;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-block">
+      <h1>Operaxon</h1>
+      <div class="tagline">AI Operating Systems · Built for Operators</div>
+    </div>
+    <div class="contact-block">
+      <span class="hi">Brandon Sandoval</span><br>
+      <a href="mailto:brandon@operaxon.com">brandon@operaxon.com</a><br>
+      <a href="https://operaxon.com">operaxon.com</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p>
+      Most businesses run on chaos disguised as process. Operaxon builds you
+      <span>an AI operating system that actually runs your business</span> —
+      not just answers questions. Custom agents. Real memory. Decisions made
+      while you sleep.
+    </p>
+  </div>
+
+  <!-- MAIN SECTIONS -->
+  <div class="sections">
+
+    <!-- WHAT IT IS -->
+    <div class="section">
+      <div class="section-label">What It Is</div>
+      <div class="section-content">
+        Operaxon is a done-for-you AI OS — a system of AI agents configured
+        specifically for your business, running 24/7 on dedicated hardware in
+        your office.<br><br>
+        Not a chatbot. Not a subscription app. A real operating layer with
+        memory, context, and identity — built to understand your business and
+        act like your best operator.
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="section">
+      <div class="section-label">What You Get</div>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="dot"></div>
+          <p><strong>Custom AI agents</strong> scoped to your operations — not generic prompts</p>
+        </div>
+        <div class="check-item">
+          <div class="dot"></div>
+          <p><strong>Dedicated Mac mini</strong> running locally. Your data stays yours.</p>
+        </div>
+        <div class="check-item">
+          <div class="dot"></div>
+          <p><strong>Memory &amp; continuity</strong> — agents know your business, your team, your priorities</p>
+        </div>
+        <div class="check-item">
+          <div class="dot"></div>
+          <p><strong>Ongoing support</strong> — I tune and improve the system as your business evolves</p>
+        </div>
+        <div class="check-item">
+          <div class="dot"></div>
+          <p><strong>30-day onboarding</strong> — hands-on setup, training, and go-live</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+      <div class="section-label">How It Works</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <strong>Discovery call</strong>
+            We map your current workflows, bottlenecks, and highest-value leverage points.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <strong>Build &amp; configure</strong>
+            I build your agent stack — scoped, named, and wired into your actual tools.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <strong>Deploy &amp; train</strong>
+            Hardware ships or we set up remotely. Your team learns to work with it.
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-text">
+            <strong>Operate &amp; evolve</strong>
+            Monthly tuning, new agents as you grow, direct line to me when something breaks.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO IT'S FOR -->
+    <div class="section">
+      <div class="section-label">Who It's For</div>
+      <div class="section-content">
+        Operaxon is for operators who are done with half-baked AI tools and want
+        something that actually works in their business.<br><br>
+
+        <strong style="color:#ffffff;">You're a fit if:</strong><br>
+        · You run a $500K–$10M business<br>
+        · You have repetitive work eating your team's time<br>
+        · You've tried AI tools and been underwhelmed<br>
+        · You want to move faster without hiring more people<br><br>
+
+        <strong style="color:#ffffff;">Industries:</strong> Auto dealers · Service businesses ·
+        Agencies · Real estate · Healthcare admin · Any operator who needs leverage.
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section full-width">
+      <div class="section-label">Pricing</div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="tier">Solo Operator</div>
+          <div class="amount">$997<span>/mo</span></div>
+          <div class="setup">+ $997 setup fee</div>
+          <div class="desc">1 agent · Core workflows · Monthly tuning · Direct Telegram support</div>
+        </div>
+        <div class="price-card highlight">
+          <div class="tier">Business OS ★</div>
+          <div class="amount">$1,997<span>/mo</span></div>
+          <div class="setup">+ $1,997 setup fee</div>
+          <div class="desc">Up to 3 agents · Full stack · Weekly check-ins · Priority support</div>
+        </div>
+        <div class="price-card">
+          <div class="tier">Enterprise OS</div>
+          <div class="amount">Custom<span></span></div>
+          <div class="setup">$2,500–$5,000/mo</div>
+          <div class="desc">Unlimited agents · Multi-location · Team training · SLA</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end sections -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">Sandoval Solutions LLC · DBA Operaxon · operaxon.com</div>
+    <div class="footer-cta">Ready to build? <span>brandon@operaxon.com</span></div>
+  </div>
+
+  <div class="bottom-bar"></div>
+</div>
+</body>
+</html>
