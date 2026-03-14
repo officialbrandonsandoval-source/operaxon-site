@@ -392,7 +392,7 @@ function Pricing() {
             <div className="mb-2">
               <div className="text-white/30 text-xs mb-1">Device (optional) — Mac mini M4 16GB</div>
               <div className="text-white/50 text-sm font-semibold mb-3">$599 <span className="text-white/25 font-normal">at cost</span></div>
-              <div className="text-white/35 text-sm mb-1">$997 one-time setup, then</div>
+              <div className="text-white/35 text-sm mb-1">$5,000 one-time setup, then</div>
               <div className="text-4xl font-bold">
                 $997<span className="text-white/35 text-base font-normal">/mo</span>
               </div>
@@ -434,7 +434,7 @@ function Pricing() {
             <div className="mb-2">
               <div className="text-white/35 text-xs mb-1">Device (optional) — Mac mini M4 Pro 24GB</div>
               <div className="text-white/55 text-sm font-semibold mb-3">$799 <span className="text-white/30 font-normal">at cost</span></div>
-              <div className="text-white/40 text-sm mb-1">$997 one-time setup, then</div>
+              <div className="text-white/40 text-sm mb-1">$5,000 one-time setup, then</div>
               <div className="text-4xl font-bold text-white">
                 $997<span className="text-white/40 text-base font-normal">/mo</span>
               </div>
@@ -628,7 +628,7 @@ function FAQ() {
     },
     {
       q: "Do you hide your pricing?",
-      a: "No. Solo Operator: $997 setup + $997/mo. Business OS: $1,997 setup + $1,997/mo. Enterprise OS: $2,500–$5,000/mo custom. Hardware is priced at Apple retail cost — we don't mark it up. Bring your own Mac and skip the device fee entirely. We show our prices because we're confident in what they deliver.",
+      a: "No. Solo Operator: $5,000 setup + $997/mo. Business OS: $1,997 setup + $1,997/mo. Enterprise OS: $2,500–$5,000/mo custom. Hardware is priced at Apple retail cost — we don't mark it up. Bring your own Mac and skip the device fee entirely. We show our prices because we're confident in what they deliver.",
     },
     {
       q: "What do I actually get every day?",
@@ -726,7 +726,7 @@ function FinalCTA() {
           Apply for a Spot →
         </a>
         <p className="text-white/25 text-sm mb-2">
-          Solo Operator: $997 setup + $997/mo &nbsp;·&nbsp; Business OS: $1,997 setup + $1,997/mo &nbsp;·&nbsp; Enterprise OS: $2,500–$5,000/mo custom
+          Solo Operator: $5,000 setup + $997/mo &nbsp;·&nbsp; Business OS: $1,997 setup + $1,997/mo &nbsp;·&nbsp; Enterprise OS: $2,500–$5,000/mo custom
         </p>
         <p className="text-white/20 text-sm">
           Questions?{" "}

@@ -114,7 +114,7 @@ export default function OnboardingPage() {
           <h1 style={{ fontSize: '26px', fontWeight: 700, marginBottom: '12px' }}>Let&apos;s build your system</h1>
           <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.6, maxWidth: '460px', margin: '0 auto' }}>
             This takes about 5 minutes. Your answers let us configure your AI operating system
-            specifically for your business — not a generic template. Starts at $497/mo.
+            specifically for your business — not a generic template. Starts at $5,000 setup + $997/mo.
           </p>
         </div>
 
@@ -128,16 +128,16 @@ export default function OnboardingPage() {
               {[
                 {
                   value: 'starter',
-                  label: 'Starter OS — $497/mo',
+                  label: 'Solo Operator — $997/mo',
                   badge: '',
-                  sub: '$497 setup · 1 agent · Works on your existing Mac · Morning brief + competitor monitoring + daily digest · No new hardware required',
+                  sub: '$5,000 setup · 1 agent · Works on your existing Mac · Morning brief + competitor monitoring + daily digest · No new hardware required',
                   best: false,
                 },
                 {
                   value: 'operator',
-                  label: 'Solo Operator OS — $997/mo',
+                  label: 'Solo Operator — Mac mini M4 Pro · $997/mo',
                   badge: 'MOST POPULAR',
-                  sub: '$997 setup · 1–2 agents · Full cron suite · Mac mini M4 16GB or Pro 24GB (at cost, optional) · Morning brief + content + prospecting + monitoring, 24/7',
+                  sub: '$5,000 setup · 1–2 agents · Full cron suite · Mac mini M4 16GB or Pro 24GB (at cost, optional) · Morning brief + content + prospecting + monitoring, 24/7',
                   best: true,
                 },
                 {
