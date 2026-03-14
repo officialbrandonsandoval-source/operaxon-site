@@ -384,15 +384,13 @@ function Pricing() {
         {/* Three tiers */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
 
-          {/* Tier 1: Solo Operator */}
+          {/* Tier 1: Bring Your Own Mac */}
           <div className="border border-white/10 bg-[#0d0d0d] rounded-2xl p-8 flex flex-col">
             <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Solo Operator</div>
-            <h3 className="text-xl font-bold mb-1">Mac mini M4</h3>
-            <p className="text-white/35 text-sm mb-6">One agent. Local models + API access. Runs 24/7 on your hardware.</p>
+            <h3 className="text-xl font-bold mb-1">Bring Your Own Mac</h3>
+            <p className="text-white/35 text-sm mb-6">Already have a Mac? We deploy directly on your hardware. No device cost.</p>
             <div className="mb-2">
-              <div className="text-white/30 text-xs mb-1">Device (optional) — Mac mini M4 16GB</div>
-              <div className="text-white/50 text-sm font-semibold mb-3">$599 <span className="text-white/25 font-normal">at cost</span></div>
-              <div className="text-white/35 text-sm mb-1">$5,000 one-time setup, then</div>
+              <div className="text-white/35 text-sm mb-1">$2,500 one-time setup, then</div>
               <div className="text-4xl font-bold">
                 $997<span className="text-white/35 text-base font-normal">/mo</span>
               </div>
@@ -414,26 +412,26 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/25 text-xs mb-5">Best for: Solo founders, individual operators, first-time deployers</p>
+            <p className="text-white/25 text-xs mb-5">Best for: Solo founders with existing Mac hardware ready to deploy</p>
             <a
-              href="/apply"
+              href="/onboarding"
               className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Apply — Solo Operator →
+              Get Started →
             </a>
           </div>
 
-          {/* Tier 2: Solo Operator — Most Popular */}
+          {/* Tier 2: Mac mini — Most Popular */}
           <div className="border border-[#6366f1] bg-[#0c0c14] rounded-2xl p-8 flex flex-col relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#6366f1] text-white text-xs font-bold px-4 py-1 rounded-full">
               Most Popular
             </div>
             <div className="text-[#818cf8] text-xs font-bold uppercase tracking-widest mb-3">Solo Operator</div>
-            <h3 className="text-xl font-bold mb-1">Mac mini M4 Pro</h3>
-            <p className="text-white/40 text-sm mb-6">Up to 3 agents. More RAM, heavier local models, full cron suite.</p>
+            <h3 className="text-xl font-bold mb-1">Mac mini</h3>
+            <p className="text-white/40 text-sm mb-6">We source and configure a Mac mini at Apple cost. Arrives ready. You never touch it.</p>
             <div className="mb-2">
-              <div className="text-white/35 text-xs mb-1">Device (optional) — Mac mini M4 Pro 24GB</div>
-              <div className="text-white/55 text-sm font-semibold mb-3">$799 <span className="text-white/30 font-normal">at cost</span></div>
+              <div className="text-white/35 text-xs mb-1">Device — Mac mini M4 (at Apple cost)</div>
+              <div className="text-white/55 text-sm font-semibold mb-3">$599–$799 <span className="text-white/30 font-normal">at cost</span></div>
               <div className="text-white/40 text-sm mb-1">$5,000 one-time setup, then</div>
               <div className="text-4xl font-bold text-white">
                 $997<span className="text-white/40 text-base font-normal">/mo</span>
@@ -457,26 +455,26 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/30 text-xs mb-5">Best for: Founders scaling, COO + CEO combos, operators who need more horsepower</p>
+            <p className="text-white/30 text-xs mb-5">Best for: Founders who want dedicated hardware and a full agent suite from day one</p>
             <a
-              href="/apply"
+              href="/onboarding"
               className="block w-full text-center bg-[#6366f1] hover:bg-[#5254cc] text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Apply — Solo Operator →
+              Get Started →
             </a>
           </div>
 
           {/* Tier 3: Business OS */}
           <div className="border border-white/10 bg-[#0d0d0d] rounded-2xl p-8 flex flex-col">
             <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3">Business OS</div>
-            <h3 className="text-xl font-bold mb-1">Mac Studio M4 Max</h3>
-            <p className="text-white/35 text-sm mb-6">Full civilization. 5+ agents. Maximum local AI horsepower.</p>
+            <h3 className="text-xl font-bold mb-1">Mac Studio</h3>
+            <p className="text-white/35 text-sm mb-6">Full civilization. Mac Studio M4 Max. Maximum local AI horsepower. 5+ agents.</p>
             <div className="mb-2">
-              <div className="text-white/30 text-xs mb-1">Device (optional) — Mac Studio M4 Max 48GB</div>
+              <div className="text-white/30 text-xs mb-1">Device — Mac Studio M4 Max 48GB (at Apple cost)</div>
               <div className="text-white/50 text-sm font-semibold mb-3">$2,499 <span className="text-white/25 font-normal">at cost</span></div>
-              <div className="text-white/35 text-sm mb-1">$1,997 one-time setup, then</div>
+              <div className="text-white/35 text-sm mb-1">$10,000 one-time setup, then</div>
               <div className="text-4xl font-bold text-white">
-                $1,997<span className="text-white/35 text-base font-normal">/mo</span>
+                $997<span className="text-white/35 text-base font-normal">/mo</span>
               </div>
             </div>
             <div className="border-t border-white/5 my-5" />
@@ -497,12 +495,12 @@ function Pricing() {
                 </li>
               ))}
             </ul>
-            <p className="text-white/25 text-xs mb-5">Best for: Dealership groups, agencies, operators who want the full stack</p>
+            <p className="text-white/25 text-xs mb-5">Best for: Operators who want the full stack — max compute, max agents, max autonomy</p>
             <a
-              href="/apply"
+              href="/onboarding"
               className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 rounded-lg font-semibold transition-colors text-sm"
             >
-              Apply — Business OS →
+              Get Started →
             </a>
           </div>
         </div>
@@ -628,7 +626,7 @@ function FAQ() {
     },
     {
       q: "Do you hide your pricing?",
-      a: "No. Solo Operator: $5,000 setup + $997/mo. Business OS: $1,997 setup + $1,997/mo. Enterprise OS: $2,500–$5,000/mo custom. Hardware is priced at Apple retail cost — we don't mark it up. Bring your own Mac and skip the device fee entirely. We show our prices because we're confident in what they deliver.",
+      a: "No. Bring Your Own Mac: $2,500 setup + $997/mo. Mac mini: $5,000 setup + $997/mo. Business OS (Mac Studio): $10,000 setup + $997/mo. Hardware is priced at Apple retail cost — we don't mark it up. Bring your own Mac and pay the lower setup rate. We show our prices because we're confident in what they deliver.",
     },
     {
       q: "What do I actually get every day?",
@@ -726,7 +724,7 @@ function FinalCTA() {
           Apply for a Spot →
         </a>
         <p className="text-white/25 text-sm mb-2">
-          Solo Operator: $5,000 setup + $997/mo &nbsp;·&nbsp; Business OS: $1,997 setup + $1,997/mo &nbsp;·&nbsp; Enterprise OS: $2,500–$5,000/mo custom
+          Own a Mac: $2,500 setup + $997/mo &nbsp;·&nbsp; Mac mini: $5,000 setup + $997/mo &nbsp;·&nbsp; Business OS (Mac Studio): $10,000 setup + $997/mo
         </p>
         <p className="text-white/20 text-sm">
           Questions?{" "}

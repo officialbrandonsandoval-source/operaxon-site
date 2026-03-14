@@ -114,7 +114,7 @@ export default function OnboardingPage() {
           <h1 style={{ fontSize: '26px', fontWeight: 700, marginBottom: '12px' }}>Let&apos;s build your system</h1>
           <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.6, maxWidth: '460px', margin: '0 auto' }}>
             This takes about 5 minutes. Your answers let us configure your AI operating system
-            specifically for your business — not a generic template. Starts at $5,000 setup + $997/mo.
+            specifically for your business — not a generic template. Starts at $2,500 setup + $997/mo.
           </p>
         </div>
 
@@ -127,24 +127,24 @@ export default function OnboardingPage() {
             <div style={{ marginBottom: '12px' }}>
               {[
                 {
-                  value: 'starter',
-                  label: 'Solo Operator — $997/mo',
+                  value: 'byom',
+                  label: 'Bring Your Own Mac — $2,500 setup + $997/mo',
                   badge: '',
-                  sub: '$5,000 setup · 1 agent · Works on your existing Mac · Morning brief + competitor monitoring + daily digest · No new hardware required',
+                  sub: 'Already have a Mac · 1 agent · Morning brief + competitor monitoring + daily digest · No device cost · Fastest path to live',
                   best: false,
                 },
                 {
-                  value: 'operator',
-                  label: 'Solo Operator — Mac mini M4 Pro · $997/mo',
+                  value: 'mini',
+                  label: 'Mac mini — $5,000 setup + $997/mo',
                   badge: 'MOST POPULAR',
-                  sub: '$5,000 setup · 1–2 agents · Full cron suite · Mac mini M4 16GB or Pro 24GB (at cost, optional) · Morning brief + content + prospecting + monitoring, 24/7',
+                  sub: 'We source a Mac mini M4 at Apple cost ($599–$799) · 1–3 agents · Full cron suite · Morning brief + content + prospecting + monitoring, 24/7',
                   best: true,
                 },
                 {
-                  value: 'custom',
-                  label: 'Business OS — Custom',
+                  value: 'studio',
+                  label: 'Business OS (Mac Studio) — $10,000 setup + $997/mo',
                   badge: '',
-                  sub: 'Starting at $2,500/mo · 3–10+ agents · Mac Studio or multi-device setup · Built entirely around your business — not a template · Full civilization build',
+                  sub: 'Mac Studio M4 Max 48GB at Apple cost ($2,499) · 5+ agents · Full civilization build · Custom integrations · Maximum local AI horsepower',
                   best: false,
                 },
               ].map(opt => (
