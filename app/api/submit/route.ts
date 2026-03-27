@@ -44,10 +44,11 @@ export async function POST(req: NextRequest) {
     const timezone = data.timezone || "—";
     const success = data.success || "—";
     const hardware = data.hardware || "—";
+    const morningWish = data.morningWish || "—";
     const notes = data.notes || "—";
 
-    const tierEmoji: Record<string, string> = { starter: "🟢", operator: "🟡", studio: "🔵" };
-    const tierLabel: Record<string, string> = { starter: "Starter ($297/mo)", operator: "Operator ($497/mo)", studio: "Studio ($997/mo)" };
+    const tierEmoji: Record<string, string> = { byom: "🟢", mini: "🟡", studio: "🔵" };
+    const tierLabel: Record<string, string> = { byom: "Bring Your Own Mac ($2,500 setup + $997/mo)", mini: "Mac mini ($5,000 setup + $997/mo)", studio: "Business OS / Mac Studio ($10,000 setup + $997/mo)" };
 
     // Escape HTML special chars in user-provided fields
     const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -66,6 +67,7 @@ ${tierEmoji[tier] || "⚪"} <b>Tier:</b> ${esc(tierLabel[tier] || tier)}
 🥊 <b>Competitors:</b> ${esc(competitors)}
 📋 <b>Topics:</b> ${esc(topics)}
 ⏰ <b>Brief time:</b> ${esc(briefTime)} (${esc(timezone)})
+🌅 <b>Wants every morning:</b> ${esc(morningWish)}
 ✅ <b>Success looks like:</b> ${esc(success)}
 💻 <b>Hardware:</b> ${esc(hardware)}
 📝 <b>Notes:</b> ${esc(notes)}

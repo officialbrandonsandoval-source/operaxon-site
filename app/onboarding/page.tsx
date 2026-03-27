@@ -29,6 +29,7 @@ export default function OnboardingPage() {
       timezone: fd.get('timezone'),
       success: fd.get('success'),
       hardware: fd.get('hardware'),
+      morningWish: fd.get('morning_wish'),
       notes: fd.get('notes'),
     };
 
@@ -118,7 +119,7 @@ export default function OnboardingPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
 
           {/* Section 0 — Tier Selection */}
           <div style={{ marginBottom: '40px' }}>
@@ -172,17 +173,17 @@ export default function OnboardingPage() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div style={fieldStyle}>
                 <label style={labelStyle}>First Name <span style={{ color: '#6366f1' }}>*</span></label>
-                <input style={inputStyle} type="text" name="first_name" placeholder="Brandon" required />
+                <input style={inputStyle} type="text" name="first_name" placeholder="First name" required />
               </div>
               <div style={fieldStyle}>
                 <label style={labelStyle}>Last Name <span style={{ color: '#6366f1' }}>*</span></label>
-                <input style={inputStyle} type="text" name="last_name" placeholder="Sandoval" required />
+                <input style={inputStyle} type="text" name="last_name" placeholder="Last name" required />
               </div>
             </div>
 
             <div style={fieldStyle}>
               <label style={labelStyle}>Company Name <span style={{ color: '#6366f1' }}>*</span></label>
-              <input style={inputStyle} type="text" name="company" placeholder="Acme Auto Group" required />
+              <input style={inputStyle} type="text" name="company" placeholder="Your company name" required />
             </div>
 
             <div style={fieldStyle}>
