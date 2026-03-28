@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import ClientShell from "../components/ClientShell";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = localFont({
+  src: [{ path: "./fonts/GeistVF.woff", style: "normal" }],
+  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: "Operaxon — Your business, operated by AI.",
@@ -25,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}<Analytics /></body>
+      <body className={geist.className}>
+        <ClientShell>{children}</ClientShell>
+        <Analytics />
+      </body>
     </html>
   );
 }
