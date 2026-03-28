@@ -794,23 +794,28 @@ function Products() {
             </a>
           </div>
 
-          {/* Coming soon cards */}
+          {/* Live products */}
           {[
-            { name: "AI Agent Starter Kit", desc: "Everything you need to deploy your first agent stack. Templates, workflows, prompts, and step-by-step walkthroughs.", price: "$47" },
-            { name: "Content Machine Prompts", desc: "300+ battle-tested prompts for scripts, captions, hooks, and threads across YouTube, TikTok, Twitter, and Instagram.", price: "$17" },
-            { name: "Second Brain OS", desc: "A complete Notion + AI knowledge management system. Capture, connect, and recall your ideas and business intel instantly.", price: "$37" },
-            { name: "Sovereign Builder Playbook", desc: "The exact systems and frameworks Brandon uses to run multiple businesses simultaneously without bloated headcount.", price: "$57" },
+            { name: "AI Agent Starter Kit", desc: "Stop re-explaining yourself every session. Five structured files that give your AI agent persistent identity and context. Works with Claude, ChatGPT, OpenClaw, or any AI tool.", price: "$27", url: "https://brandonox7.gumroad.com/l/kmpfwp" },
+            { name: "Content Machine Prompt Pack", desc: "30 prompts that turn your ideas into real content — organized by format, ready to run this week. Includes a full weekly production workflow.", price: "$19", url: "https://brandonox7.gumroad.com/l/rkpdsg" },
+            { name: "Second Brain OS", desc: "Structured files that give your AI agent real context about you — so it stops being a chatbot and starts being useful. Five files, 2 minutes a day.", price: "$29", url: "https://brandonox7.gumroad.com/l/bkdbk" },
+            { name: "Sovereign Builder Playbook", desc: "How to run your business on AI agents that get smarter every day you use them. 1,800+ words of framework, quick start guide, and operating checklist.", price: "$47", url: "https://brandonox7.gumroad.com/l/kztwxks" },
           ].map((p) => (
-            <div key={p.name} className="bg-[#0d0d0d] border border-white/5 rounded-xl p-7 flex flex-col opacity-60">
-              <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white/30 bg-white/5 border border-white/8 rounded px-2 py-1 mb-4 self-start">
-                Coming Soon
+            <div key={p.name} className="relative bg-[#0d0d0d] border border-white/10 rounded-xl p-7 flex flex-col hover:border-[#6366f1]/40 transition-colors">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-[#6366f1] bg-[#6366f1]/10 border border-[#6366f1]/20 rounded px-2 py-1 mb-4 self-start">
+                Available Now
               </span>
               <h3 className="text-lg font-semibold mb-2">{p.name}</h3>
               <p className="text-white/45 text-sm leading-relaxed flex-1 mb-5">{p.desc}</p>
-              <div className="text-3xl font-bold text-white/30 mb-4">{p.price}</div>
-              <span className="block text-center border border-white/10 text-white/25 text-sm font-medium px-4 py-3 rounded-lg cursor-not-allowed">
-                Notify Me
-              </span>
+              <div className="text-3xl font-bold mb-4">{p.price}</div>
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center bg-[#6366f1] hover:bg-[#5254cc] text-white text-sm font-medium px-4 py-3 rounded-lg transition-colors"
+              >
+                Buy Now — {p.price}
+              </a>
             </div>
           ))}
 
