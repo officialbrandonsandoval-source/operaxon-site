@@ -93,15 +93,13 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-8 text-center"
         >
-          Other installers
+          We'll automate
           <br />
-          set up software.
+          your entire business.
           <br />
           <span className="text-glow bg-gradient-to-r from-neon-indigo to-neon-violet bg-clip-text text-transparent">
-            We build the intelligence
+            You keep the profits.
           </span>
-          <br />
-          <span className="text-white/90">that runs your business.</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -111,8 +109,8 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-xl md:text-2xl text-white/50 max-w-2xl mx-auto text-center mb-4 leading-relaxed"
         >
-          An Autonomous Operating Intelligence — deployed for your company with a{" "}
-          <span className="text-white/80">name, memory, mission, and goals.</span>
+          Deploy Dominus Sui + specialized agents for{" "}
+          <span className="text-white/80">sales, trading, content, research, and operations.</span>
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -674,7 +672,7 @@ function FinalCTA() {
         </p>
         <p className="text-white/15 text-sm">
           Questions?{" "}
-          <a href="mailto:brandon@operaxon.com" className="text-white/30 hover:text-white/50 transition-colors underline underline-offset-2">brandon@operaxon.com</a>
+          <a href="mailto:support@operaxon.com" className="text-white/30 hover:text-white/50 transition-colors underline underline-offset-2">support@operaxon.com</a>
         </p>
       </div>
     </section>
@@ -697,7 +695,7 @@ function Footer() {
               ["#products", "Products"],
               ["#story", "Our Story"],
               ["#faq", "FAQ"],
-              ["mailto:brandon@operaxon.com", "Contact"],
+              ["mailto:support@operaxon.com", "Support"],
             ].map(([href, label]) => (
               <a key={href} href={href} className="hover:text-white transition-colors duration-300">{label}</a>
             ))}
@@ -705,7 +703,11 @@ function Footer() {
         </div>
         <div className="border-t border-white/[0.04] pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-white/20">
           <p>&copy; 2026 Operaxon / Sandoval Solutions LLC. All rights reserved.</p>
-          <a href="mailto:brandon@operaxon.com" className="hover:text-white/40 transition-colors text-white/30">brandon@operaxon.com</a>
+          <div className="flex gap-4">
+            <a href="mailto:support@operaxon.com" className="hover:text-white/40 transition-colors text-white/30">support@operaxon.com</a>
+            <span className="text-white/15">&middot;</span>
+            <a href="mailto:brandon@operaxon.com" className="hover:text-white/40 transition-colors text-white/30">brandon@operaxon.com</a>
+          </div>
         </div>
       </div>
     </footer>
